@@ -92,3 +92,31 @@ Verificación
 | Causa      | Agrupar sin normalizar el texto               | Dividir entre cero ventas                       |
 | Corrección | Agrupar con `nombreCiudad`                    | Si no hay ventas válidas, devolver `0`          |
 | Resultado  | El reporte muestra exactamente 4 ciudades     | El reporte muestra ticket $0, sin NaN           |
+
+DIA2
+
+ Predicción (antes de medir)
+Si n se multiplica por 10:
+- totalVendido: las operaciones se multiplican por 10.
+- ventaMayor: se multiplican por 10.
+- totalPorCiudad: se multiplican por 10.
+- primeraVenta: no cambia.
+
+ Resultados
+| n       | totalVendido | ventaMayor | totalPorCiudad | primeraVenta |
+|---------|--------------|------------|----------------|--------------|
+| 100     | 100          | 200        | 100            | 1            |
+| 1.000   | 1.000        | 2.000      | 1.000          | 1            |
+| 10.000  | 10.000       | 20.000     | 10.000         | 1            |
+| 100.000 | 100.000      | 200.000    | 100.000        | 1            |
+
+ Comparación
+Mi predicción se cumplió: las tres funciones lineales crecieron 10 veces cada vez que n creció 10 veces, y primeraVenta se quedó en 1.
+
+ Clasificación Big O
+| Función        | Big O | Justificación                                                        |
+|----------------|-------|----------------------------------------------------------------------|
+| primeraVenta   | O(1)  | Solo mira un elemento, sin ciclo. Siempre hace 1 operación.          |
+| totalVendido   | O(n)  | Un solo ciclo que visita cada venta una vez.                         |
+| ventaMayor     | O(n)  | Un solo ciclo. Hace 2 operaciones por venta, pero crece 10 veces.    |
+| totalPorCiudad | O(n)  | Un solo ciclo. Guardar en el objeto no agrega otro ciclo.            |
