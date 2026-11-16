@@ -1,3 +1,5 @@
+
+DIA 1 :SEMANA1 
 Problemas encontrados en los datos:
 1. Hay solo 3 registros, con ello no puedo sacar conclusiones o analisis real.
 2. Cada ciudad y cada cliente aparece una sola vez.
@@ -82,7 +84,7 @@ Verificación
 - Resultado con exactamente 4 ciudades: Medellín, Bogotá, Cali y Pereira.
 
 
-## Depuración
+ Depuración
 
 |            | Error 1                                       | Error 2                                         |
 |------------|-----------------------------------------------|-------------------------------------------------|
@@ -93,7 +95,7 @@ Verificación
 | Corrección | Agrupar con `nombreCiudad`                    | Si no hay ventas válidas, devolver `0`          |
 | Resultado  | El reporte muestra exactamente 4 ciudades     | El reporte muestra ticket $0, sin NaN           |
 
-DIA2
+DIA 2:SEMANA1 
 
  Predicción (antes de medir)
 Si n se multiplica por 10:
@@ -139,7 +141,7 @@ Con n ventas, las comparaciones son (n-1) + (n-2) + ... + 1 = n(n-1)/2.
 Eso es aproximadamente n²/2, así que la función es O(n²).
 Comprobación con n = 5: 5 × 4 / 2 = 10 ✓
 
-### Tiempos medidos
+ Tiempos medidos
 | n      | Tiempo (ms) | Veces vs. el anterior |
 |--------|-------------|-----------------------|
 | 1.000  | 11,5        | -                     |
@@ -163,4 +165,39 @@ Costo oculto: includes
 `recurrentes.includes` también recorre un arreglo para saber si el cliente ya está guardado. Solo se ejecuta cuando dos ventas son del mismo cliente, pero el arreglo `recurrentes` puede llegar a tener muchos clientes. En el peor caso, cada `includes` recorre todo ese arreglo, y eso suma trabajo extra a cada paso del ciclo. Con 100.000 ventas se notó: tardó mucho más de lo que estimé. Aun así, la clase de complejidad no cambia: sigue siendo O(n²), solo que cada paso cuesta más.
 
 Conclusión para la gerente
-El reporte se vuelve lento porque, para saber qué clientes compraron más de una vez, el programa compara cada venta con todas las demás. Si las ventas se duplican, el trabajo se multiplica por cuatro. En las pruebas, con 16.000 ventas tardó poco más de 1 segundo, pero con 100.000 ventas tardó más de 4 minutos. Con el historial de un año, por eso se queda pensando. Se puede arreglar usando otra forma de contar a los clientes, que haría el mismo reporte en una fracción de segundo.
+El reporte se vuelve lento porque, para saber qué clientes compraron más de una vez, el programa compara cada venta con todas las demás. Si las ventas se duplican, el trabajo se multiplica por cuatro.
+
+DIA 3: SEMANA1 
+
+RESULTADO DE COMPARACIÓN:
+Cadena:     488361000
+Una pasada: 488361000
+OK: son iguales
+
+Por qué ambas son O(n) en tiempo
+La cadena recorre el arreglo 4 veces, o sea hace unas 4n operaciones. En Big O se eliminan las constantes, porque no cambian cómo crece el trabajo: O(4n) = O(n). Si n se multiplica por 10, las dos versiones tardan unas 10 veces más. La cadena solo es más lenta por un factor fijo.
+
+### Complejidad espacial
+| Función               | Espacio | Por qué |
+|-----------------------|---------|---------|
+| valorVenta            | O(1)    | Solo multiplica dos números |
+| normalizar            | O(1)    | Devuelve un texto corto |
+| totalVendido          | O(1)    | Solo guarda un número (total) |
+| unidadesVendidas      | O(1)    | Solo guarda un número |
+| ventaMayor            | O(1)    | Guarda una referencia a una venta que ya existe |
+| ticketPromedio        | O(1)    | Solo guarda dos números |
+| ventasPorCiudad       | O(1)    | Solo guarda un número |
+| nombreCiudad          | O(1)    | Un texto corto |
+| totalPorCiudad        | O(k)    | El objeto tiene una entrada por ciudad distinta (k). Con 4 ciudades es casi constante; solo crecería con n si cada venta fuera de una ciudad distinta |
+| unidadesPorProducto   | O(k)    | Una entrada por producto distinto |
+| topProductosPorValor  | O(k)    | Crea un objeto y un arreglo con una entrada por producto, y además ordena |
+| ventasDelDia          | O(n)    | Crea un arreglo nuevo con las ventas del día (en el peor caso, todas) |
+| clientesRecurrentes   | O(n)    | El arreglo recurrentes puede llegar a tener muchos clientes |
+| totalCiudadCadena     | O(n)    | Crea 3 arreglos del tamaño de los datos |
+| totalCiudadUnaPasada  | O(1)    | Solo guarda un número |
+
+Dejo `totalCiudadUnaPasada`. Las dos dan el mismo resultado y son O(n) en tiempo, pero la de una pasada usa memoria constante y no crea arreglos intermedios. Eso importa en un servidor con poca memoria y con muchos datos. La cadena se lee más fácil, y para pocos datos sería una buena opción, pero aquí pesa más cuidar los recursos. Además, el ciclo de una pasada también se entiende bien.
+
+
+
+
