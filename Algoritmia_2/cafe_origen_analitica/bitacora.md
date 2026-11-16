@@ -120,3 +120,47 @@ Mi predicción se cumplió: las tres funciones lineales crecieron 10 veces cada 
 | totalVendido   | O(n)  | Un solo ciclo que visita cada venta una vez.                         |
 | ventaMayor     | O(n)  | Un solo ciclo. Hace 2 operaciones por venta, pero crece 10 veces.    |
 | totalPorCiudad | O(n)  | Un solo ciclo. Guardar en el objeto no agrega otro ciclo.            |
+
+
+Traza con 5 ventas
+El ciclo de afuera (i) toma una venta y el ciclo de adentro (j) la compara con todas las que vienen después.
+
+| i     | j que compara | Comparaciones |
+|-------|---------------|---------------|
+| 0     | 1, 2, 3, 4    | 4             |
+| 1     | 2, 3, 4       | 3             |
+| 2     | 3, 4          | 2             |
+| 3     | 4             | 1             |
+| 4     | ninguna       | 0             |
+| Total |               | 10            |
+
+Generalización:
+Con n ventas, las comparaciones son (n-1) + (n-2) + ... + 1 = n(n-1)/2.
+Eso es aproximadamente n²/2, así que la función es O(n²).
+Comprobación con n = 5: 5 × 4 / 2 = 10 ✓
+
+### Tiempos medidos
+| n      | Tiempo (ms) | Veces vs. el anterior |
+|--------|-------------|-----------------------|
+| 1.000  | 11,5        | -                     |
+| 2.000  | 33,4        | 2,9                   |
+| 4.000  | 91,5        | 2,7                   |
+| 8.000  | 355,5       | 3,9                   |
+| 16.000 | 1.272       | 3,6                   |
+
+Cuando n se duplica, el tiempo se multiplica entre 2,7 y 3,9 veces, o sea cerca de 4 en los tamaños más grandes. Con n pequeño la diferencia es mayor porque hay trabajo fijo que pesa más y los tiempos varían un poco. Aun así, el comportamiento se acerca a O(n²): si n se multiplica por 2, n² se multiplica por 2² = 4.
+
+Estimación
+- 100.000 ventas: 1.272 ms × (6,25)² ≈ 50 segundos.
+- 1.000.000 ventas: 1.272 ms × (62,5)² ≈ 83 minutos.
+
+ Comprobación
+Estimé unos 50 segundos para 100.000 ventas y el tiempo real fue de 4 minutos y 25 segundos (unos 265 s), cerca de 5 veces más de lo estimado.
+
+La estimación se quedó corta porque la calculé solo con el tiempo de n = 16.000. Con más ventas hay más clientes distintos, y `recurrentes.includes` tiene que recorrer un arreglo cada vez más largo. Ese costo oculto pesa más con n grande. Aun así, el comportamiento sigue siendo cuadrático: con 100.000 ventas ya tarda minutos, y con 1.000.000 sería muchísimo más.
+
+Costo oculto: includes
+`recurrentes.includes` también recorre un arreglo para saber si el cliente ya está guardado. Solo se ejecuta cuando dos ventas son del mismo cliente, pero el arreglo `recurrentes` puede llegar a tener muchos clientes. En el peor caso, cada `includes` recorre todo ese arreglo, y eso suma trabajo extra a cada paso del ciclo. Con 100.000 ventas se notó: tardó mucho más de lo que estimé. Aun así, la clase de complejidad no cambia: sigue siendo O(n²), solo que cada paso cuesta más.
+
+Conclusión para la gerente
+El reporte se vuelve lento porque, para saber qué clientes compraron más de una vez, el programa compara cada venta con todas las demás. Si las ventas se duplican, el trabajo se multiplica por cuatro. En las pruebas, con 16.000 ventas tardó poco más de 1 segundo, pero con 100.000 ventas tardó más de 4 minutos. Con el historial de un año, por eso se queda pensando. Se puede arreglar usando otra forma de contar a los clientes, que haría el mismo reporte en una fracción de segundo.

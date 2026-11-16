@@ -28,3 +28,6 @@ console.log("Malo (robot):", ventas.reduce((s, v) => s + v.cantidad * v.precio) 
 console.log([].length);  // 0 -> dividir entre 0
 console.log(ventas.reduce((s, v) => s + v.cantidad * v.precio, 0)); // con valor inicial 0
 console.log("Bueno (corregido):", promedio);
+
+//dia dos 
+console.log(a.clientesRecurrentes(ventas));
