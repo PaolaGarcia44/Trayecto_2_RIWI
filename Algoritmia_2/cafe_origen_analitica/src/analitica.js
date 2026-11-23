@@ -1,5 +1,11 @@
-// Ayudas
-const valorVenta = (venta) => venta.cantidad * venta.precio;
+const ventas = require("./datos");
+
+//función valorVenta(venta)
+function valorVenta(venta) {
+ return venta.cantidad * venta.precio;
+  }
+  
+/* 
 const normalizar = (texto) => texto.trim().toLowerCase();
 
 // 1. Total vendido
@@ -116,10 +122,10 @@ function totalCiudadUnaPasada(ventas, ciudad) {
     }
   }
   return total;
-}
+} */
 module.exports = {
   valorVenta,
-  normalizar,
+ /*  normalizar,
   totalVendido,
   unidadesVendidas,
   ventaMayor,
@@ -132,6 +138,9 @@ module.exports = {
     ventasDelDia,
     clientesRecurrentes,
      totalCiudadCadena,
-  totalCiudadUnaPasada,
+  totalCiudadUnaPasada, */
 };
+
+
+
 

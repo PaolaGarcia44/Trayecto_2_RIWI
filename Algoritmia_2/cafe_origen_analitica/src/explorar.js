@@ -1,15 +1,25 @@
 const ventas = require("./datos.js");
-console.log("registros:", ventas.length);
+const { valorVenta } = require("./analitica.js");
+
+//PRIMER TUESTE 
+/* console.log("registros:", ventas.length);
 console.log("primero:", ventas[0]);
 console.log("ultimo:", ventas[ventas.length - 1]);
-console.table(ventas);
-console.log(ventas.map(v => `${v.ciudad}`).join("  "));
+console .log (ventas [4].producto);
+ console.table(ventas); */
+
+ //Los nùeros del dìa
+console.log(valorVenta(ventas[0]));
 
 
 
-const a = require("./analitica.js");
+ /* console.log(ventas.map(v => `${v.ciudad}`).join("  ")); */
 
-console.log("Total:", a.totalVendido(ventas));
+
+
+
+
+/* console.log("Total:", a.totalVendido(ventas));
 console.log("Unidades:", a.unidadesVendidas(ventas));
 console.log("Venta mayor:", a.ventaMayor(ventas));
 console.log("Ticket promedio:", a.ticketPromedio(ventas));
@@ -30,4 +40,4 @@ console.log(ventas.reduce((s, v) => s + v.cantidad * v.precio, 0)); // con valor
 console.log("Bueno (corregido):", promedio);
 
 //dia dos 
-console.log(a.clientesRecurrentes(ventas));
+console.log(a.clientesRecurrentes(ventas)); */ 

@@ -57,7 +57,7 @@ DICCIONARIO DE DATOS:
 
 DECISIONES:
  Arreglo vacío en `ventaMayor` | Devuelve `null`, porque no hay ninguna venta que sea la mayor
-
+------------------------------------------------------------
 HIPOTESIS DE METODO REDUCE: “el reduce no tiene valor inicial, o el arreglo está vacío
 
 1- reduce suma sin ningún elemento y devuelve 0 (el valor inicial s).
