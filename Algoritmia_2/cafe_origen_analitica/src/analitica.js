@@ -72,19 +72,31 @@ function ventasPorCiudad(ventas, ciudad) {
   return total;
 }
 
+//totalvendidoM
+
+function totalvendidoM(ventas){
+
+
+}
+
+// unidadesVendidasM
+function unidadesVendidasM(ventas){
+
+  
+}
+
+//ventasPorciudadM
+function ventasPorciudadM(ventas){
+
+  
+}
 
 /* 
 
 
 // 
 
-function ventasPorCiudad(ventas, ciudad) {
-  let total = 0;
-  for (const v of ventas) {
-    if (normalizar(v.ciudad) === normalizar(ciudad)) total += valorVenta(v);
-  }
-  return total;
-}
+
 
 const nombreCiudad = (texto) => {
   const t = normalizar(texto);

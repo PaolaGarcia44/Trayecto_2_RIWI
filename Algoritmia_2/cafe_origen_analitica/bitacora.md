@@ -20,20 +20,11 @@ EVIDENCIA DE DIFERENCIAS DE TABLAS:
 │ 8       │ 9  │ 'C09'   │ 'Prensa francesa'     │ 'Cali'     │ 2        │ 95000  │
 └─────────┴────┴─────────┴───────────────────────┴────────────┴──────────┴────────┘
 
-┌─────────┬────┬─────────┬─────────────────
-──────┬────────────┬──────────┬────────┐
-│ (index) │ id │ cliente │ producto
-      │ ciudad     │ cantidad │ precio │
-├─────────┼────┼─────────┼─────────────────
-──────┼────────────┼──────────┼────────┤
-│ 0       │ 1  │ 'C01'   │ 'Origen Huila 50
-0 g'  │ 'Medellín' │ 2        │ 42000  │
-│ 1       │ 2  │ 'C02'   │ 'Origen Nariño 2
-50 g' │ 'Bogotá'   │ 1        │ 26000  │
-│ 2       │ 3  │ 'C03'   │ 'Prensa francesa
-'     │ 'Cali'     │ 1        │ 95000  │
-└─────────┴────┴─────────┴─────────────────
-──────┴────────────┴──────────┴────────┘
+| Índice | ID | Cliente | Producto | Ciudad | Cantidad | Precio |
+|---:|---:|---|---|---|---:|---:|
+| 0 | 1 | C01 | Origen Huila 500 g | Medellín | 2 | 42000 |
+| 1 | 2 | C02 | Origen Nariño 250 g | Bogotá | 1 | 26000 |
+| 2 | 3 | C03 | Prensa francesa | Cali | 1 | 95000 |
 
 ## PROBLEMAS O ANALISIS:
 -Uno de los problemas es que no poseo una información clara de cuando se realizaron las ventas
