@@ -1,5 +1,5 @@
 
-DIA 1 :SEMANA1 
+# DIA 1 :SEMANA1 
 Problemas encontrados en los datos:
 1. Hay solo 3 registros, con ello no puedo sacar conclusiones o analisis real.
 2. Cada ciudad y cada cliente aparece una sola vez.
@@ -35,16 +35,15 @@ EVIDENCIA DE DIFERENCIAS DE TABLAS:
 └─────────┴────┴─────────┴─────────────────
 ──────┴────────────┴──────────┴────────┘
 
-PROBLEMAS O ANALISIS:
+## PROBLEMAS O ANALISIS:
 -Uno de los problemas es que no poseo una información clara de cuando se realizaron las ventas
 en este caso viene siendo la [fecha] que es un factor importante para tener un control de los días que más
 se venden o tuvieron mejores ventas.
 
 -En mis datos no hay clientes recurrientes lo que también genera falencias en las ventas.
-
 Todavia tengo mucha distorsión en los datos en cuanto la mezcla de cafés lo que genera inconcruencias en los totales de ventas.
 
-DICCIONARIO DE DATOS:
+## DICCIONARIO DE DATOS:
 
 | Propiedad | Tipo   | Significado                                        |
 |-----------|--------|----------------------------------------------------|
@@ -55,10 +54,49 @@ DICCIONARIO DE DATOS:
 | cantidad  | número | Unidades vendidas en esa venta                     |
 | precio    | número | Precio de una unidad, en pesos colombianos         |
 
-DECISIONES:
+
+##  Pruebas realizadas
+
+Se probaron las funciones con tres tipos de entradas: el arreglo completo, un arreglo con un solo registro y un arreglo vacío.
+
+| Función | Arreglo completo | Un registro | Arreglo vacío |
+|---|---|---|---|
+| `totalVendido()` | Suma total | Valor de la venta | 0 |
+| `unidadesVendidas()` | Total de unidades | Cantidad del registro | 0 |
+| `ventaMayor()` | Venta de mayor valor | Mismo registro | null |
+| `ticketPromedio()` | Promedio de ventas válidas | Valor de la venta | 0 |
+| `ventasPorCiudad()` | Total por ciudad | Valor si coincide | 0 |
+
+##  Tablas de traza
+
+**Prueba 1: totalVendido()**
+
+| Venta | Cantidad | Precio | Total |
+|---|---:|---:|---:|
+| 1 | 2 | 10000 | 20000 |
+| 2 | 3 | 15000 | 45000 |
+| 3 | 1 | 20000 | 20000 |
+| **Resultado** | | | **85000** |
+
+**Prueba 2: unidadesVendidas()**
+
+| Venta | Cantidad | Acumulado |
+|---|---:|---:|
+| 1 | 2 | 2 |
+| 2 | 3 | 5 |
+| 3 | 1 | 6 |
+| **Resultado** | | **6** |
+
+##  Conclusión
+
+Las funciones fueron probadas con diferentes entradas. Se verificó que los resultados coincidan con los cálculos manuales y se definió qué devolver cuando el arreglo está vacío.
+
+También se comprobó la comparación de ciudades ignorando mayúsculas y espacios sobrantes.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+## DECISIONES:
  Arreglo vacío en `ventaMayor` | Devuelve `null`, porque no hay ninguna venta que sea la mayor
-------------------------------------------------------------
-HIPOTESIS DE METODO REDUCE: “el reduce no tiene valor inicial, o el arreglo está vacío
+
+## HIPOTESIS DE METODO REDUCE: “el reduce no tiene valor inicial, o el arreglo está vacío
 
 1- reduce suma sin ningún elemento y devuelve 0 (el valor inicial s).
 2- Luego divide entre ventas.length, que es 0.

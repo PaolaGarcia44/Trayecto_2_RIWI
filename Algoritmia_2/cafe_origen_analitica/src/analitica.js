@@ -2,50 +2,82 @@ const ventas = require("./datos");
 
 //función valorVenta(venta)
 function valorVenta(venta) {
- return venta.cantidad * venta.precio;
-  }
-  
-/* 
-const normalizar = (texto) => texto.trim().toLowerCase();
+  return venta.cantidad * venta.precio;
+}
 
-// 1. Total vendido
+// funciòn totalVendido
 function totalVendido(ventas) {
   let total = 0;
-  for (const v of ventas) total += valorVenta(v);
+  for (const venta of ventas) {
+    total += valorVenta(venta);
+  }
   return total;
 }
 
-// 2. Unidades vendidas
+// funciòn unidadesvendidas
 function unidadesVendidas(ventas) {
   let unidades = 0;
-  for (const v of ventas) unidades += v.cantidad;
+  for (const venta of ventas) {
+    unidades += Number(venta.cantidad);
+  }
   return unidades;
 }
 
-// 3. Venta mayor (devuelve la venta completa, no solo el número)
+
+// funciòn ventaMayor
+
 function ventaMayor(ventas) {
-  if (ventas.length === 0) return null; // decisión: anotarla en la bitácora
-  let mayor = ventas[0];
-  for (const v of ventas) {
-    if (valorVenta(v) > valorVenta(mayor)) mayor = v;
+  let ventaM = null;
+  for (const venta of ventas) {
+    if (ventaM === null || valorVenta(venta) > valorVenta(ventaM)) {
+
+
+
+      ventaM = venta;
+    }
   }
-  return mayor;
+  return ventaM;
 }
 
 // 4. Ticket promedio (solo ventas con cantidad > 0)
+
 function ticketPromedio(ventas) {
   let total = 0;
   let conteo = 0;
-  for (const v of ventas) {
-    if (v.cantidad > 0) {
-      total += valorVenta(v);
-      conteo++;
+
+  for (const venta of ventas) {
+    if (venta.cantidad > 0) {
+      total += valorVenta(venta);
+      conteo++
     }
+
   }
-  return conteo === 0 ? 0 : total / conteo;
+  if (conteo === 0) {
+    return 0;
+  }
+
+  return total / conteo;
 }
 
 // 5. Total vendido en una ciudad
+
+function ventasPorCiudad(ventas, ciudad) {
+  let total = 0;
+  for (const venta of ventas) {
+    if (venta.ciudad.trim().toLowerCase() === ciudad.trim().toLowerCase()) {
+      total += valorVenta(venta);
+    }
+  }
+
+  return total;
+}
+
+
+/* 
+
+
+// 
+
 function ventasPorCiudad(ventas, ciudad) {
   let total = 0;
   for (const v of ventas) {
@@ -125,20 +157,26 @@ function totalCiudadUnaPasada(ventas, ciudad) {
 } */
 module.exports = {
   valorVenta,
- /*  normalizar,
   totalVendido,
   unidadesVendidas,
   ventaMayor,
   ticketPromedio,
   ventasPorCiudad,
-    nombreCiudad,
-  totalPorCiudad,
-  unidadesPorProducto,
-  topProductosPorValor,
-    ventasDelDia,
-    clientesRecurrentes,
-     totalCiudadCadena,
-  totalCiudadUnaPasada, */
+
+  /* 
+   
+   
+   
+   
+  
+     nombreCiudad,
+   totalPorCiudad,
+   unidadesPorProducto,
+   topProductosPorValor,
+     ventasDelDia,
+     clientesRecurrentes,
+      totalCiudadCadena,
+   totalCiudadUnaPasada, */
 };
 
 
