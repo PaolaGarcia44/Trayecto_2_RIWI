@@ -278,15 +278,18 @@ lo que espero es que totalvendido,totalporciudad,primeraventa, sea recorrido lin
 
 =========================================================
 
-Traza con 5 ventas
+## Traza con 5 ventas
 El ciclo de afuera (i) toma una venta y el ciclo de adentro (j) la compara con todas las que vienen después.
+
+
+el valor inicial se suma con el que esta acomulado y se suma con el valor que se compara que es el J , en la primera vuelta da 4 luego en la posicion 1 da 7 ya que suma la comparacion anterior con los valor a comparar que son 3, luego asi sucesivamente hasta que terminen los valores a comparar y lo hace de manera descendiente hasta llegar a un valor finito o sin valor.
 
 | i     | j que compara | Comparaciones |
 |-------|---------------|---------------|
 | 0     | 1, 2, 3, 4    | 4             |
-| 1     | 2, 3, 4       | 3             |
-| 2     | 3, 4          | 2             |
-| 3     | 4             | 1             |
+| 1     | 2, 3, 4       | 7             |
+| 2     | 3, 4          | 9             |
+| 3     | 4             | 10            |
 | 4     | ninguna       | 0             |
 | Total |               | 10            |
 
@@ -295,16 +298,19 @@ Con n ventas, las comparaciones son (n-1) + (n-2) + ... + 1 = n(n-1)/2.
 Eso es aproximadamente n²/2, así que la función es O(n²).
 Comprobación con n = 5: 5 × 4 / 2 = 10 ✓
 
+## tiempo de ejecucion 
  Tiempos medidos
-| n      | Tiempo (ms) | Veces vs. el anterior |
-|--------|-------------|-----------------------|
-| 1.000  | 11,5        | -                     |
-| 2.000  | 33,4        | 2,9                   |
-| 4.000  | 91,5        | 2,7                   |
-| 8.000  | 355,5       | 3,9                   |
-| 16.000 | 1.272       | 3,6                   |
+| n      | Tiempo (ms) | 
+|--------|-------------|
+| 1.000  | 7.09ms      | 
+| 2.000  | 14.987ms    | 
+| 4.000  | 54.671ms    | 
+| 8.000  | 243.054ms   |
+| 16.000 | 968.905ms   | 
 
-Cuando n se duplica, el tiempo se multiplica entre 2,7 y 3,9 veces, o sea cerca de 4 en los tamaños más grandes. Con n pequeño la diferencia es mayor porque hay trabajo fijo que pesa más y los tiempos varían un poco. Aun así, el comportamiento se acerca a O(n²): si n se multiplica por 2, n² se multiplica por 2² = 4.
+
+
+Cuando n se duplica, el tiempo se multiplica aproximadamente por 2.11, 3.65, 4.45 y 3.99 veces, respectivamente. En los tamaños más grandes se acerca a 4. Con n pequeño la diferencia es mayor porque hay trabajo fijo que pesa más y los tiempos varían un poco. Aun así, el comportamiento se acerca a O(n²): si n se multiplica por 2, n² se multiplica por 2² = 4.
 
 Estimación
 - 100.000 ventas: 1.272 ms × (6,25)² ≈ 50 segundos.

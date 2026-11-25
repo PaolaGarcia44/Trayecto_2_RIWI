@@ -157,13 +157,7 @@ function totalPorCiudadI(ventas, contador) {
   return totales;
 }
 
-/* 
-
-
-// 
-
-
-
+//function clientesRecurrentes 
 function clientesRecurrentes(ventas) {
   const recurrentes = [];
   for (let i = 0; i < ventas.length; i++) {
@@ -176,6 +170,14 @@ function clientesRecurrentes(ventas) {
   }
   return recurrentes;
 }
+/* 
+
+
+// 
+
+
+
+
 
 // Versión con cadena de métodos
 function totalCiudadCadena(ventas, ciudad) {
@@ -210,6 +212,7 @@ module.exports = {
   totalVendidoI,
   ventaMayorI,
   totalPorCiudadI,
+  clientesRecurrentes,
   /* 
    
    

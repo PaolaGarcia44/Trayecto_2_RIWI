@@ -1,6 +1,6 @@
 const ventas = require("./datos.js");
 const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
-  ventaMayorI,totalPorCiudadI} = require("./analitica.js");
+  ventaMayorI,totalPorCiudadI,clientesRecurrentes} = require("./analitica.js");
 
 //PRIMER TUESTE 
 /* console.log("registros:", ventas.length);
@@ -22,7 +22,7 @@ console.log("Cali:", ventasPorCiudad(ventas, "Cali"));*/
 // Del ciclo al método: ranking y agrupaciones
 console.log("Total vendido M:", totalVendidoM(ventas));
 console.log("unidades vendidas M:",unidadesVendidasM (ventas));
-console.log("Total vendido M (con reduce):", ventasPorciudadM(ventas));
+console.log("Ventas por ciudad M:", ventasPorciudadM(ventas, "Medellín"));
 
 
 //  versión instrumentada
@@ -40,7 +40,9 @@ console.log("Contador venta mayor:", contadorMayor);
 console.log("Total por ciudad I:", totalPorCiudadI(ventas, contadorCiudad));
 console.log("Contador total por ciudad:", contadorCiudad);
 
+//dia dos 
 
+console.log("Clientes recurrentes:",clientesRecurrentes(ventas)); 
 
 /* 
 
@@ -57,6 +59,4 @@ console.log("Malo (robot):", ventas.reduce((s, v) => s + v.cantidad * v.precio) 
 console.log([].length);  // 0 -> dividir entre 0
 console.log(ventas.reduce((s, v) => s + v.cantidad * v.precio, 0)); // con valor inicial 0
 console.log("Bueno (corregido):", promedio);
-
-//dia dos 
-console.log(a.clientesRecurrentes(ventas)); */ 
+*/ 
