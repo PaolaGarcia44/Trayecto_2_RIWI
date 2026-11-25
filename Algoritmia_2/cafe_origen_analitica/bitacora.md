@@ -390,30 +390,42 @@ Cadena:     488361000
 Una pasada: 488361000
 OK: son iguales
 
-Por qué ambas son O(n) en tiempo
-La cadena recorre el arreglo 4 veces, o sea hace unas 4n operaciones. En Big O se eliminan las constantes, porque no cambian cómo crece el trabajo: O(4n) = O(n). Si n se multiplica por 10, las dos versiones tardan unas 10 veces más. La cadena solo es más lenta por un factor fijo.
+## Por qué ambas son O(n) en tiempo
 
-### Complejidad espacial
-| Función               | Espacio | Por qué |
-|-----------------------|---------|---------|
-| valorVenta            | O(1)    | Solo multiplica dos números |
-| normalizar            | O(1)    | Devuelve un texto corto |
-| totalVendido          | O(1)    | Solo guarda un número (total) |
-| unidadesVendidas      | O(1)    | Solo guarda un número |
-| ventaMayor            | O(1)    | Guarda una referencia a una venta que ya existe |
-| ticketPromedio        | O(1)    | Solo guarda dos números |
-| ventasPorCiudad       | O(1)    | Solo guarda un número |
-| nombreCiudad          | O(1)    | Un texto corto |
-| totalPorCiudad        | O(k)    | El objeto tiene una entrada por ciudad distinta (k). Con 4 ciudades es casi constante; solo crecería con n si cada venta fuera de una ciudad distinta |
-| unidadesPorProducto   | O(k)    | Una entrada por producto distinto |
-| topProductosPorValor  | O(k)    | Crea un objeto y un arreglo con una entrada por producto, y además ordena |
-| ventasDelDia          | O(n)    | Crea un arreglo nuevo con las ventas del día (en el peor caso, todas) |
-| clientesRecurrentes   | O(n)    | El arreglo recurrentes puede llegar a tener muchos clientes |
-| totalCiudadCadena     | O(n)    | Crea 3 arreglos del tamaño de los datos |
-| totalCiudadUnaPasada  | O(1)    | Solo guarda un número |
+Las dos funciones tienen una complejidad temporal O(n), porque el tiempo que necesitan para realizar el cálculo depende de la cantidad de ventas que deben revisar.
 
-Dejo `totalCiudadUnaPasada`. Las dos dan el mismo resultado y son O(n) en tiempo, pero la de una pasada usa memoria constante y no crea arreglos intermedios. Eso importa en un servidor con poca memoria y con muchos datos. La cadena se lee más fácil, y para pocos datos sería una buena opción, pero aquí pesa más cuidar los recursos. Además, el ciclo de una pasada también se entiende bien.
+La función `totalCiudadCadena` utiliza varios métodos (`map`, `filter`, `map` y `reduce`), por lo que realiza varios recorridos sobre los datos. En cambio, `totalCiudadUnaPasada` utiliza un solo ciclo para revisar las ventas y calcular el total.
 
+Aunque la primera función realiza más recorridos, ambas aumentan su trabajo cuando crece la cantidad de ventas. Al aplicar la regla de simplificación, se eliminan las constantes, por eso las dos se representan como O(n).
+
+En conclusión, ambas tienen un crecimiento lineal, pero la función de una pasada realiza el proceso con menos recorridos y evita crear varios arreglos intermedios.
+
+
+## **Análisis de la complejidad espacial del motor**
+
+La complejidad espacial permite identificar cuánta memoria adicional necesita una función para realizar su trabajo.
+
+En el motor encontré funciones con complejidad O(1), como `valorVenta`, `totalVendido`, `unidadesVendidas`, `ventaMayor` y `ticketPromedio`. Estas funciones utilizan variables para realizar cálculos y guardar resultados, sin crear arreglos adicionales que crezcan con la cantidad de ventas.
+
+También encontré funciones con complejidad O(n), como `ventasPorCiudad`, `totalPorCiudad` y `unidadesPorProducto`, porque crean arreglos u objetos para almacenar información de las ventas, ciudades o productos.
+
+Una función que requiere especial atención es `topProductosPorValor`, porque utiliza varios métodos que crean arreglos adicionales para agrupar, ordenar y seleccionar los productos.
+
+Por último, al comparar `totalCiudadCadena` con `totalCiudadUnaPasada`, observé que la primera necesita más memoria porque crea varios arreglos intermedios. En cambio, la segunda utiliza variables para acumular el resultado sin crear nuevos arreglos.
+
+En conclusión, las funciones O(1) utilizan una cantidad constante de memoria adicional, mientras que las funciones O(n) necesitan más memoria cuando aumenta la cantidad de información que deben almacenar.
+
+## **Decisión sobre la versión de totalCiudad**
+
+Después de comparar las dos funciones, decidí conservar `totalCiudadUnaPasada` como versión definitiva del motor.
+
+Las dos funciones entregan el mismo resultado y tienen una complejidad temporal O(n). Sin embargo, la versión con métodos crea varios arreglos adicionales durante el proceso, por lo que necesita más memoria.
+
+Por otro lado, la versión de una pasada utiliza un solo ciclo para revisar las ventas y acumular el total. Esto permite realizar el mismo cálculo sin crear arreglos adicionales.
+
+Aunque la versión con métodos también es fácil de entender porque divide el proceso en varios pasos, considero que la versión de una pasada ofrece un mejor equilibrio entre claridad y uso de recursos.
+
+Por esta razón, elegí conservar la versión de una pasada, ya que realiza el trabajo de manera sencilla y utiliza menos memoria adicional.
 
 
 

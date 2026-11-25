@@ -1,6 +1,7 @@
 const ventas = require("./datos.js");
 const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
-  ventaMayorI,totalPorCiudadI,clientesRecurrentes} = require("./analitica.js");
+  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada} = require("./analitica.js");
+const { generarVentas } = require("./generador.js");
 
 //PRIMER TUESTE 
 /* console.log("registros:", ventas.length);
@@ -17,17 +18,17 @@ console.log("Venta de mayor valor:", ventaMayor(ventas));
 console.log("Ticket promedio:", ticketPromedio(ventas)); 
 console.log("Medellín:", ventasPorCiudad(ventas, "Medellín"));
 console.log("Bogotá:", ventasPorCiudad(ventas, "Bogotá"));
-console.log("Cali:", ventasPorCiudad(ventas, "Cali"));*/
+console.log("Cali:", ventasPorCiudad(ventas, "Cali"));
 
 // Del ciclo al método: ranking y agrupaciones
 console.log("Total vendido M:", totalVendidoM(ventas));
 console.log("unidades vendidas M:",unidadesVendidasM (ventas));
-console.log("Ventas por ciudad M:", ventasPorciudadM(ventas, "Medellín"));
+console.log("Ventas por ciudad M:", ventasPorciudadM(ventas, "Medellín"));*/
 
 
 //  versión instrumentada
 
-const contadorTotal = { visitas: 0, comparaciones: 0 };
+/*const contadorTotal = { visitas: 0, comparaciones: 0 };
 const contadorMayor = { visitas: 0, comparaciones: 0 };
 const contadorCiudad = { visitas: 0, comparaciones: 0 };
 
@@ -38,11 +39,34 @@ console.log("Venta mayor I:", ventaMayorI(ventas, contadorMayor));
 console.log("Contador venta mayor:", contadorMayor);
 
 console.log("Total por ciudad I:", totalPorCiudadI(ventas, contadorCiudad));
-console.log("Contador total por ciudad:", contadorCiudad);
+console.log("Contador total por ciudad:", contadorCiudad); */
 
 //dia dos 
 
 console.log("Clientes recurrentes:",clientesRecurrentes(ventas)); 
+
+console.log("Total por ciudad (cadena):",totalCiudadCadena(ventas, "Medellín"));
+console.log("Total por ciudad (una pasada):",totalCiudadUnaPasada(ventas, "Medellín"));
+
+
+
+
+// Comparación con 10.000 ventas
+
+const ventasComparacion = generarVentas(10000);
+
+const ciudad = "Medellín";
+
+// Ejecutar ambas funciones
+const resultadoCadena = totalCiudadCadena(ventasComparacion, ciudad);
+const resultadoUnaPasada = totalCiudadUnaPasada(ventasComparacion, ciudad);
+
+// Mostrar resultados
+console.log("Resultado cadena:", resultadoCadena);
+console.log("Resultado una pasada:", resultadoUnaPasada);
+
+// Comprobar si son iguales
+console.log("¿Son iguales?:", resultadoCadena === resultadoUnaPasada);
 
 /* 
 
