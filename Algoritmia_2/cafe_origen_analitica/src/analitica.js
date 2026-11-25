@@ -59,7 +59,7 @@ function ticketPromedio(ventas) {
   return total / conteo;
 }
 
-// 5. Total vendido en una ciudad
+//  Total vendido en una ciudad
 
 function ventasPorCiudad(ventas, ciudad) {
   let total = 0;
@@ -126,12 +126,14 @@ function ventaMayorI(ventas, contador) {
 
     const valor = venta.precio * venta.cantidad;
 
-    if (mayor === null || valor > mayor.precio * mayor.cantidad) {
-      contador.comparaciones++;
-
+      if (mayor === null) {
       mayor = venta;
     } else {
       contador.comparaciones++;
+
+      if (valor > mayor.precio * mayor.cantidad) {
+        mayor = venta;
+      }
     }
   }
 
@@ -143,6 +145,7 @@ function totalPorCiudadI(ventas, contador) {
 
   for (const venta of ventas) {
     contador.visitas++;
+    contador.comparaciones++;
 
     if (totales[venta.ciudad] === undefined) {
       totales[venta.ciudad] = 0;

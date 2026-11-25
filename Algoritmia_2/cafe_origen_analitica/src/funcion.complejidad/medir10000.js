@@ -1,5 +1,5 @@
-const { generarVentas } = require("./generador.js");
-const a = require("./analitica.js");
+const { generarVentas } = require("../generador.js");
+const a = require("../analitica.js");
 
 const ventas = generarVentas(10000);
 

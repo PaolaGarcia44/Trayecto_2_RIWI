@@ -1,4 +1,4 @@
-function totalVendido(ventas, contador) {
+function totalVendido(ventas, contador) { //recorrido lineal
   let total = 0;
   for (const v of ventas) {
     contador.operaciones += 1; // visito una venta
@@ -7,7 +7,7 @@ function totalVendido(ventas, contador) {
   return total;
 }
 
-function ventaMayor(ventas, contador) {
+function ventaMayor(ventas, contador) { // recorrido cuadratico
   if (ventas.length === 0) return null;
   let mayor = ventas[0];
   for (const v of ventas) {
@@ -18,7 +18,7 @@ function ventaMayor(ventas, contador) {
   return mayor;
 }
 
-function totalPorCiudad(ventas, contador) {
+function totalPorCiudad(ventas, contador) { //recorido lineal
   const totales = {};
   for (const v of ventas) {
     contador.operaciones += 1; // visito una venta
@@ -27,7 +27,7 @@ function totalPorCiudad(ventas, contador) {
   return totales;
 }
 
-function primeraVenta(ventas, contador) {
+function primeraVenta(ventas, contador) { // recorrido lineal 
   contador.operaciones += 1; // solo miro una venta
   return ventas[0];
 }

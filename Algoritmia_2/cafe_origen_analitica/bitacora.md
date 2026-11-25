@@ -187,7 +187,6 @@ Top productos por valor: [
   { producto: 'prensa francesa', total: 190000 }
 ]
 
------------------------------------------------------------------------------------------------------------------------------------------------------
 ## DECISIONES:
  Arreglo vacío en `ventaMayor` | Devuelve `null`, porque no hay ninguna venta que sea la mayor
 
@@ -228,9 +227,9 @@ Verificación
 | Corrección | Agrupar con `nombreCiudad`                    | Si no hay ventas válidas, devolver `0`          |
 | Resultado  | El reporte muestra exactamente 4 ciudades     | El reporte muestra ticket $0, sin NaN           |
 
-DIA 2:SEMANA1 
+# DIA 2:SEMANA1 
 
- Predicción (antes de medir)
+ ## Predicción (antes de medir)
 Si n se multiplica por 10:
 - totalVendido: las operaciones se multiplican por 10.
 - ventaMayor: se multiplican por 10.
@@ -245,8 +244,26 @@ Si n se multiplica por 10:
 | 10.000  | 10.000       | 20.000     | 10.000         | 1            |
 | 100.000 | 100.000      | 200.000    | 100.000        | 1            |
 
- Comparación
-Mi predicción se cumplió: las tres funciones lineales crecieron 10 veces cada vez que n creció 10 veces, y primeraVenta se quedó en 1.
+ ## Comparación
+
+**Comparación entre complejidad constante y lineal**
+
+S### Comparación entre complejidad constante y lineal
+
+Se agregó la función `primeraVenta(ventas)`, que devuelve el primer elemento del arreglo mediante el acceso directo a la posición `0`, sin necesidad de recorrer todos los registros.
+
+Al realizar las mediciones, se observa que su número de operaciones permanece constante en 1, incluso cuando la cantidad de ventas aumenta de 100 a 100.000.
+
+En cambio, las funciones `totalVendido`, `ventaMayor` y `totalPorCiudad` aumentan sus operaciones proporcionalmente a la cantidad de elementos del arreglo.
+
+Por lo tanto, `primeraVenta` tiene complejidad constante O(1), mientras que las otras tres funciones tienen complejidad lineal O(n).
+
+
+## predicciones con los resultados y clasifica de cada función 
+
+las operaciones se mantienen iguales cuando son cantidad de ventas y totalvendido pero cuando aumenta la cantidad de ventas ventamayor aumenta el doble del esfuerzo y aumenta mucho mas rapido que los demas. 
+
+lo que espero es que totalvendido,totalporciudad,primeraventa, sea recorrido lineal y ventamayor es el unico de recorrido cuadratico , pero los resultados fueron un poco diferentes ya que totalvendido,totalporciudad y ventamayor fueron 0(n)  lo que significa recorrido lineal y primeraventa 0(1) recorrido constante.
 
  Clasificación Big O
 | Función        | Big O | Justificación                                                        |
@@ -256,6 +273,10 @@ Mi predicción se cumplió: las tres funciones lineales crecieron 10 veces cada 
 | ventaMayor     | O(n)  | Un solo ciclo. Hace 2 operaciones por venta, pero crece 10 veces.    |
 | totalPorCiudad | O(n)  | Un solo ciclo. Guardar en el objeto no agrega otro ciclo.            |
 
+
+
+
+=========================================================
 
 Traza con 5 ventas
 El ciclo de afuera (i) toma una venta y el ciclo de adentro (j) la compara con todas las que vienen después.
