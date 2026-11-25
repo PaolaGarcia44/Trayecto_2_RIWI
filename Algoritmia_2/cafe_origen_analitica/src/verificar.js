@@ -75,3 +75,9 @@ console.log("Resultado con métodos:",ventasPorciudadM(ventas, "Medellín"));
 console.log("total vendido por ciudad:", totalPorCiudad(ventas));
 console.log ("Unidades por producto son:",unidadesPorProducto(ventas))
 console.log("Top productos por valor:", topProductosPorValor(ventas, 3));
+
+module.exports = {
+  totalPorCiudad,
+  unidadesPorProducto,
+  topProductosPorValor
+};

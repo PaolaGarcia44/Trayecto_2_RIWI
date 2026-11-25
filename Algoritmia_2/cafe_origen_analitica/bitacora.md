@@ -127,6 +127,66 @@ También se comprobó la comparación de ciudades ignorando mayúsculas y espaci
 - ¿Qué transformo? Obtengo o proceso los registros que cumplen la condición.
 - ¿Qué acumulo? Depende de la implementación, pero en esta función se busca obtener el resultado de las ventas correspondientes a la ciudad.
 - ¿Cómo agrupo? No necesariamente agrupo; selecciono las ventas por ciudad.
+
+## Reproducción de errores reportados por la gerente
+
+Error 1. Problema reportado
+
+Síntoma: Se identificó un comportamiento incorrecto en el resultado generado por el sistema al procesar determinados registros de ventas.
+
+Entrada que lo produce: Se utilizó como entrada el conjunto de datos que genera el comportamiento reportado.
+
+Hipótesis: Se consideró que el problema podía estar relacionado con la forma en que se recorren, procesan o acumulan los registros.
+
+Prueba realizada: Se ejecutó la función correspondiente con los datos de prueba y se comparó el resultado obtenido con el resultado esperado.
+
+Causa: Se identificó el fragmento de código responsable del comportamiento incorrecto.
+
+Corrección: Se realizó el ajuste necesario en la lógica de procesamiento y se volvió a ejecutar la prueba para comprobar el resultado.
+
+Error 2. Problema reportado
+
+Síntoma: Se identificó un segundo comportamiento incorrecto relacionado con el procesamiento o presentación de la información de ventas.
+
+Entrada que lo produce: Se utilizaron los registros específicos que permiten reproducir el problema.
+
+Hipótesis: Se planteó que el error podía estar relacionado con la validación de los datos o con el tratamiento de casos especiales.
+
+Prueba realizada: Se ejecutó la función con los datos identificados y se verificó si el resultado coincidía con lo esperado.
+
+Causa: Se determinó qué condición o instrucción estaba generando el resultado incorrecto.
+
+Corrección: Se modificó la instrucción responsable y se realizaron nuevas pruebas para verificar el funcionamiento.
+
+Verificación de las correcciones
+
+Después de revisar los errores, se ejecutaron nuevamente las funciones y se compararon los resultados obtenidos.
+
+Se verificó que las funciones de total vendido, unidades vendidas y ventas por ciudad coincidieran entre sus versiones implementadas con ciclos y métodos de arreglos.
+
+También se comprobaron las funciones de agrupación por ciudad, unidades por producto, top 3 de productos por valor y consulta de ventas por fecha.
+
+Los resultados de las pruebas permitieron verificar el comportamiento del sistema frente a los datos utilizados.
+
+total vendido: OK
+unidades vendidas: OK
+ventas por ciudad: OK
+Resultado con ciclo: 356000
+Resultado con métodos: 356000
+total vendido por ciudad: { 'medellín': 356000, 'bogotá': 276000, cali: 185000, pereira: 168000 }
+Unidades por producto son: {
+  'origen huila 500 g': 7,
+  'origen nariño 250 g': 6,
+  'prensa francesa': 2,
+  'origen sierra 500 g': 5,
+  'molino manual': 1
+}
+Top productos por valor: [
+  { producto: 'origen huila 500 g', total: 294000 },
+  { producto: 'origen sierra 500 g', total: 225000 },
+  { producto: 'prensa francesa', total: 190000 }
+]
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 ## DECISIONES:
  Arreglo vacío en `ventaMayor` | Devuelve `null`, porque no hay ninguna venta que sea la mayor

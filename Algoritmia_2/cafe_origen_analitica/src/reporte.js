@@ -1,38 +1,64 @@
 const ventas = require("./datos.js");
 const a = require("./analitica.js");
+const verificar = require("./verificar.js");
 
-const moneda = (n) => "$" + Math.round(n).toLocaleString("es-CO");
-
-const mayor = a.ventaMayor(ventas);
-const dia = a.ventasDelDia(ventas, "2026-09-07");
-
-console.log("=== CAFÉ ORIGEN · REPORTE v0.1 ===");
-
-console.log("\nResumen general");
-console.log("  Total vendido:     ", moneda(a.totalVendido(ventas)));
-console.log("  Unidades vendidas: ", a.unidadesVendidas(ventas));
-console.log("  Ticket promedio:   ", moneda(a.ticketPromedio(ventas)));
-console.log(
-  "  Venta mayor:       ",
-  moneda(mayor.cantidad * mayor.precio),
-  `(venta ${mayor.id}, ${mayor.cliente}, ${mayor.producto}, ${a.nombreCiudad(mayor.ciudad)})`
-);
-
-console.log("\nVentas por ciudad");
-for (const [ciudad, total] of Object.entries(a.totalPorCiudad(ventas))) {
-  console.log(`  ${ciudad}  ${moneda(total)}`);
+function pesos(valor) {
+    return "$ " + valor.toLocaleString("es-CO");
 }
 
-console.log("\nUnidades por producto");
-for (const [producto, unidades] of Object.entries(a.unidadesPorProducto(ventas))) {
-  console.log(`  ${producto}  ${unidades}`);
+
+console.log("\n========== RESUMEN GENERAL ==========");
+console.log("Total vendido:", pesos(a.totalVendido(ventas)));
+console.log("Unidades vendidas:", a.unidadesVendidas(ventas));
+
+
+console.log("\n========== VENTAS POR CIUDAD ==========");
+console.log(
+    Object.fromEntries(
+        Object.entries(verificar.totalPorCiudad(ventas)).map(
+            ([ciudad, total]) => [ciudad, pesos(total)]
+        )
+    )
+);
+
+
+console.log("\n========== UNIDADES POR PRODUCTO ==========");
+console.log(verificar.unidadesPorProducto(ventas));
+
+
+console.log("\n========== TOP 3 PRODUCTOS POR VALOR ==========");
+console.table(
+    verificar.topProductosPorValor(ventas, 3).map(producto => ({
+        producto: producto.producto,
+        total: pesos(producto.total)
+    }))
+);
+
+console.log("\n========== RESUMEN DE VENTAS POR DÍA ==========");
+
+// Día con ventas
+const diaConVentas = a.ventasDelDia(ventas, "2026-09-06");
+
+console.log("\nDÍA CON VENTAS");
+
+if (diaConVentas.length > 0) {
+    console.log("Cantidad de ventas:", diaConVentas.length);
+    console.log("Total vendido:", pesos(a.totalVendido(diaConVentas)));
+    console.log("Unidades vendidas:", a.unidadesVendidas(diaConVentas));
+} else {
+    console.log("No hay ventas registradas para este día.");
 }
 
-console.log("\nTop 3 por valor");
-a.topProductosPorValor(ventas, 3).forEach(([producto, total], i) => {
-  console.log(`  ${i + 1}. ${producto}  ${moneda(total)}`);
-});
 
-console.log(
-  `\nDía 2026-09-07: ${dia.length} ventas · total ${moneda(a.totalVendido(dia))} · ticket ${moneda(a.ticketPromedio(dia))}`
-);
+// Día sin ventas
+const diaSinVentas = a.ventasDelDia(ventas, "2026-09-04");
+
+console.log("\nDÍA SIN VENTAS");
+
+if (diaSinVentas.length > 0) {
+    console.log("Cantidad de ventas:", diaSinVentas.length);
+    console.log("Total vendido:", pesos(a.totalVendido(diaSinVentas)));
+    console.log("Unidades vendidas:", a.unidadesVendidas(diaSinVentas));
+} else {
+    console.log("No hay ventas registradas para este día.");
+}

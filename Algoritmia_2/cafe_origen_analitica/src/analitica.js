@@ -98,49 +98,19 @@ function ventasPorciudadM(ventas, ciudad) {
   }, 0);
 }
 
+//function ventasDelDia(ventas, fecha)
+function ventasDelDia(ventas, fecha) {
+  return ventas.filter(function(venta) {
+    return venta.fecha === fecha;
+  });
+}
+
 /* 
 
 
 // 
 
 
-
-const nombreCiudad = (texto) => {
-  const t = normalizar(texto);
-  return t[0].toUpperCase() + t.slice(1); // "medellín " -> "Medellín"
-};
-
-function totalPorCiudad(ventas) {
-  return ventas.reduce((acc, v) => {
-    const c = nombreCiudad(v.ciudad);
-    acc[c] = (acc[c] || 0) + valorVenta(v);
-    return acc;
-  }, {});
-}
-
-function unidadesPorProducto(ventas) {
-  return ventas.reduce((acc, v) => {
-    acc[v.producto] = (acc[v.producto] || 0) + v.cantidad;
-    return acc;
-  }, {});
-}
-
-function topProductosPorValor(ventas, k) {
-  const porProducto = ventas.reduce((acc, v) => {
-    acc[v.producto] = (acc[v.producto] || 0) + valorVenta(v);
-    return acc;
-  }, {});
-  return Object.entries(porProducto)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, k);
-}
-function ventasDelDia(ventas, fecha) {
-  const resultado = [];
-  for (const v of ventas) {
-    if (v.fecha === fecha) resultado.push(v);
-  }
-  return resultado;
-}
 
 function clientesRecurrentes(ventas) {
   const recurrentes = [];
@@ -184,6 +154,7 @@ module.exports = {
   totalVendidoM,
   unidadesVendidasM,
   ventasPorciudadM,
+  ventasDelDia,
 
   /* 
    
@@ -191,10 +162,7 @@ module.exports = {
    
    
   
-     nombreCiudad,
-   totalPorCiudad,
-   unidadesPorProducto,
-   topProductosPorValor,
+     
      ventasDelDia,
      clientesRecurrentes,
       totalCiudadCadena,
