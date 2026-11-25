@@ -17,7 +17,7 @@ function generarVentas(n) {
 
   for (let i = 1; i <= n; i++) {
     const producto = productos[aleatorio(productos.length)];
-    ventas.push({
+     const venta = {
       id: i,
       fecha: "2026-09-0" + (1 + aleatorio(9)),
       cliente: "C" + (1 + aleatorio(maxClientes)),
@@ -25,7 +25,8 @@ function generarVentas(n) {
       ciudad: ciudades[aleatorio(ciudades.length)],
       cantidad: 1 + aleatorio(5),
       precio: producto.precio,
-    });
+    };
+    ventas.push(venta);
   }
   return ventas;
 }

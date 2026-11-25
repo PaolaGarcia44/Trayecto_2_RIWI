@@ -1,5 +1,6 @@
 const ventas = require("./datos.js");
-const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM} = require("./analitica.js");
+const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
+  ventaMayorI,totalPorCiudadI} = require("./analitica.js");
 
 //PRIMER TUESTE 
 /* console.log("registros:", ventas.length);
@@ -22,9 +23,22 @@ console.log("Cali:", ventasPorCiudad(ventas, "Cali"));*/
 console.log("Total vendido M:", totalVendidoM(ventas));
 console.log("unidades vendidas M:",unidadesVendidasM (ventas));
 console.log("Total vendido M (con reduce):", ventasPorciudadM(ventas));
- /* 
 
 
+//  versión instrumentada
+
+const contadorTotal = { visitas: 0, comparaciones: 0 };
+const contadorMayor = { visitas: 0, comparaciones: 0 };
+const contadorCiudad = { visitas: 0, comparaciones: 0 };
+
+console.log("Total vendido I:", totalVendidoI(ventas, contadorTotal));
+console.log("Contador total vendido:", contadorTotal);
+
+console.log("Venta mayor I:", ventaMayorI(ventas, contadorMayor));
+console.log("Contador venta mayor:", contadorMayor);
+
+console.log("Total por ciudad I:", totalPorCiudadI(ventas, contadorCiudad));
+console.log("Contador total por ciudad:", contadorCiudad);
 
 
 

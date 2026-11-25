@@ -5,7 +5,7 @@ function valorVenta(venta) {
   return venta.cantidad * venta.precio;
 }
 
-// funciòn totalVendido
+// funciòn totalVendido 
 function totalVendido(ventas) {
   let total = 0;
   for (const venta of ventas) {
@@ -105,6 +105,55 @@ function ventasDelDia(ventas, fecha) {
   });
 }
 
+// funciòn totalVendido con cambio de dia 2 semana1
+function totalVendidoI(ventas, contador) {
+  let total = 0;
+
+  for (const venta of ventas) {
+    contador.visitas++;
+    total += venta.precio * venta.cantidad;
+  }
+
+  return total;
+}
+
+// funciòn ventaMayorI con cambio de dia 2 semana1
+function ventaMayorI(ventas, contador) {
+  let mayor = null;
+
+  for (const venta of ventas) {
+    contador.visitas++;
+
+    const valor = venta.precio * venta.cantidad;
+
+    if (mayor === null || valor > mayor.precio * mayor.cantidad) {
+      contador.comparaciones++;
+
+      mayor = venta;
+    } else {
+      contador.comparaciones++;
+    }
+  }
+
+  return mayor;
+}
+// funciòn totalPorCiudadI con cambio de dia 2 semana1
+function totalPorCiudadI(ventas, contador) {
+  const totales = {};
+
+  for (const venta of ventas) {
+    contador.visitas++;
+
+    if (totales[venta.ciudad] === undefined) {
+      totales[venta.ciudad] = 0;
+    }
+
+    totales[venta.ciudad] += venta.precio * venta.cantidad;
+  }
+
+  return totales;
+}
+
 /* 
 
 
@@ -155,7 +204,9 @@ module.exports = {
   unidadesVendidasM,
   ventasPorciudadM,
   ventasDelDia,
-
+  totalVendidoI,
+  ventaMayorI,
+  totalPorCiudadI,
   /* 
    
    
