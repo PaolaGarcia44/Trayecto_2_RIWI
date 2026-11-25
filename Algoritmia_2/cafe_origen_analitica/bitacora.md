@@ -312,22 +312,78 @@ Comprobación con n = 5: 5 × 4 / 2 = 10 ✓
 
 Cuando n se duplica, el tiempo se multiplica aproximadamente por 2.11, 3.65, 4.45 y 3.99 veces, respectivamente. En los tamaños más grandes se acerca a 4. Con n pequeño la diferencia es mayor porque hay trabajo fijo que pesa más y los tiempos varían un poco. Aun así, el comportamiento se acerca a O(n²): si n se multiplica por 2, n² se multiplica por 2² = 4.
 
-Estimación
-- 100.000 ventas: 1.272 ms × (6,25)² ≈ 50 segundos.
-- 1.000.000 ventas: 1.272 ms × (62,5)² ≈ 83 minutos.
+## Estimación
 
- Comprobación
-Estimé unos 50 segundos para 100.000 ventas y el tiempo real fue de 4 minutos y 25 segundos (unos 265 s), cerca de 5 veces más de lo estimado.
+### Fórmula de estimación para complejidad O(n²)
 
-La estimación se quedó corta porque la calculé solo con el tiempo de n = 16.000. Con más ventas hay más clientes distintos, y `recurrentes.includes` tiene que recorrer un arreglo cada vez más largo. Ese costo oculto pesa más con n grande. Aun así, el comportamiento sigue siendo cuadrático: con 100.000 ventas ya tarda minutos, y con 1.000.000 sería muchísimo más.
+Para estimar el tiempo de ejecución se utiliza:
 
-Costo oculto: includes
-`recurrentes.includes` también recorre un arreglo para saber si el cliente ya está guardado. Solo se ejecuta cuando dos ventas son del mismo cliente, pero el arreglo `recurrentes` puede llegar a tener muchos clientes. En el peor caso, cada `includes` recorre todo ese arreglo, y eso suma trabajo extra a cada paso del ciclo. Con 100.000 ventas se notó: tardó mucho más de lo que estimé. Aun así, la clase de complejidad no cambia: sigue siendo O(n²), solo que cada paso cuesta más.
+$$
+T(n_2) = T(n_1) \times \left(\frac{n_2}{n_1}\right)^2
+$$
 
-Conclusión para la gerente
+### Estimación para 100.000 ventas
+
+$$
+T(100000) = 968.905 \times \left(\frac{100000}{16000}\right)^2
+$$
+
+$$
+T(100000) \approx 37.847 \text{ ms}
+$$
+
+$$
+T(100000) \approx 37,85 \text{ segundos}
+$$
+
+### Estimación para 1.000.000 de ventas
+
+$$
+T(1000000) = 968.905 \times \left(\frac{1000000}{16000}\right)^2
+$$
+
+$$
+T(1000000) \approx 3.784.785 \text{ ms}
+$$
+
+$$
+T(1000000) \approx 63,08 \text{ minutos}
+$$
+
+### Conversión de milisegundos a segundos
+
+$$
+\text{Segundos} = \frac{\text{Milisegundos}}{1000}
+$$
+
+### Conversión de segundos a minutos
+
+$$
+\text{Minutos} = \frac{\text{Segundos}}{60}
+$$
+clientesRecurrentes: 1:49.243 (m:ss.mmm)
+
+
+La estimación inicial para 100.000 ventas fue de aproximadamente 37,85 segundos. Al ejecutar la función, el tiempo real fue de 109,243 segundos (1 minuto y 49,243 segundos). Aunque la estimación quedó por debajo del resultado real, se cumplió la condición del ejercicio, ya que el tiempo estimado era inferior a dos minutos.
+
+Para 1.000.000 de ventas, la estimación continúa siendo de aproximadamente 63,08 minutos, por lo que no se recomienda ejecutar esa prueba.
+
+
+
+## Costo oculto: includes
+
+### Costo oculto de `recurrentes.includes()`
+
+La función `recurrentes.includes()` realiza una búsqueda dentro del arreglo `recurrentes` para comprobar si un cliente ya fue registrado. Esta operación puede recorrer varios elementos antes de encontrarlo o determinar que no existe.
+
+Esto representa un costo adicional porque no solamente se comparan los clientes mediante los ciclos anidados, sino que también se realizan búsquedas dentro de otro arreglo.
+
+En el peor caso, `includes()` puede tener complejidad O(n). Sin embargo, la complejidad general de la función sigue siendo O(n²), porque las comparaciones entre pares de ventas dominan el crecimiento del trabajo.
+
+## Conclusión para la gerente
 El reporte se vuelve lento porque, para saber qué clientes compraron más de una vez, el programa compara cada venta con todas las demás. Si las ventas se duplican, el trabajo se multiplica por cuatro.
 
-DIA 3: SEMANA1 
+# DIA 3: SEMANA1 
 
 RESULTADO DE COMPARACIÓN:
 Cadena:     488361000
