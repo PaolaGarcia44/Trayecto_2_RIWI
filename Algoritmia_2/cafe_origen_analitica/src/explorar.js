@@ -1,5 +1,5 @@
 const ventas = require("./datos.js");
-const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad} = require("./analitica.js");
+const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM} = require("./analitica.js");
 
 //PRIMER TUESTE 
 /* console.log("registros:", ventas.length);
@@ -13,21 +13,22 @@ console .log ("venta posicion 4:",ventas [4].producto);
 console.log("Total vendido:", totalVendido(ventas));
 console.log("Unidades vendidas:", unidadesVendidas(ventas));
 console.log("Venta de mayor valor:", ventaMayor(ventas));
-console.log("Ticket promedio:", ticketPromedio(ventas)); */
+console.log("Ticket promedio:", ticketPromedio(ventas)); 
 console.log("Medellín:", ventasPorCiudad(ventas, "Medellín"));
 console.log("Bogotá:", ventasPorCiudad(ventas, "Bogotá"));
-console.log("Cali:", ventasPorCiudad(ventas, "Cali"));
+console.log("Cali:", ventasPorCiudad(ventas, "Cali"));*/
+
+// Del ciclo al método: ranking y agrupaciones
+console.log("Total vendido M:", totalVendidoM(ventas));
+console.log("unidades vendidas M:",unidadesVendidasM (ventas));
+console.log("Total vendido M (con reduce):", ventasPorciudadM(ventas));
  /* 
 
 
 
 
 
-/* console.log("Total:", a.totalVendido(ventas));
-console.log("Unidades:", a.unidadesVendidas(ventas));
-console.log("Venta mayor:", a.ventaMayor(ventas));
-console.log("Ticket promedio:", a.ticketPromedio(ventas));
-console.log("Medellín:", a.ventasPorCiudad(ventas, "Medellín"));
+/* 
 
 console.log("Un elemento:", a.totalVendido([ventas[0]]));
 console.log("Vacío:", a.totalVendido([]), a.ventaMayor([]), a.ticketPromedio([]));

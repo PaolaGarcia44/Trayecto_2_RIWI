@@ -74,21 +74,28 @@ function ventasPorCiudad(ventas, ciudad) {
 
 //totalvendidoM
 
-function totalvendidoM(ventas){
-
-
+function totalVendidoM(ventas) {
+  return ventas.reduce(function(total, venta) {
+    return total + valorVenta(venta);
+  }, 0);
 }
 
 // unidadesVendidasM
-function unidadesVendidasM(ventas){
-
-  
+function unidadesVendidasM(ventas) {
+  return ventas.reduce(function(total, venta) {
+    return total + Number(venta.cantidad);
+  }, 0);
 }
 
 //ventasPorciudadM
-function ventasPorciudadM(ventas){
+function ventasPorciudadM(ventas, ciudad) {
+  const ventasFiltradas = ventas.filter(function(venta) {
+    return venta.ciudad.trim().toLowerCase() === ciudad.trim().toLowerCase();
+  });
 
-  
+  return ventasFiltradas.reduce(function(total, venta) {
+    return total + valorVenta(venta);
+  }, 0);
 }
 
 /* 
@@ -174,6 +181,9 @@ module.exports = {
   ventaMayor,
   ticketPromedio,
   ventasPorCiudad,
+  totalVendidoM,
+  unidadesVendidasM,
+  ventasPorciudadM,
 
   /* 
    

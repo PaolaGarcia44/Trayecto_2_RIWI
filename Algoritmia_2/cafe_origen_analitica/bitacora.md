@@ -83,6 +83,50 @@ Se probaron las funciones con tres tipos de entradas: el arreglo completo, un ar
 Las funciones fueron probadas con diferentes entradas. Se verificó que los resultados coincidan con los cálculos manuales y se definió qué devolver cuando el arreglo está vacío.
 
 También se comprobó la comparación de ciudades ignorando mayúsculas y espacios sobrantes.
+
+## Análisis de ventas
+1. totalPorCiudad(ventas)
+- ¿Qué recorro? Recorro todas las ventas utilizando un ciclo for...of.
+- ¿Qué filtro? No filtro registros, proceso todas las ventas.
+- ¿Qué transformo? Normalizo el nombre de la ciudad con trim() y toLowerCase() para evitar diferencias por espacios o mayúsculas.
+- ¿Qué acumulo? Acumulo el valor total de cada venta utilizando valorVenta(venta).
+- ¿Cómo agrupo? Agrupo las ventas por ciudad utilizando un objeto llamado totales, donde cada ciudad tiene su propio acumulado.
+2. unidadesPorProducto(ventas)
+- ¿Qué recorro? Recorro todas las ventas con un ciclo for...of.
+- ¿Qué filtro? No filtro registros, tengo en cuenta todos los productos vendidos.
+- ¿Qué transformo? Normalizo el nombre del producto con trim() y toLowerCase(). También convierto la cantidad a número con Number().
+- ¿Qué acumulo? Sumo las unidades vendidas de cada producto.
+- ¿Cómo agrupo? Agrupo las cantidades por nombre de producto utilizando el objeto productos.
+3. topProductosPorValor(ventas, k)
+- ¿Qué recorro? Recorro todas las ventas mediante el método reduce().
+- ¿Qué filtro? No filtro ventas durante la agrupación. Al final selecciono los primeros k productos con slice(0, k).
+- ¿Qué transformo? Normalizo los nombres de los productos. Después convierto el objeto en un arreglo de objetos utilizando Object.entries() y map().
+- ¿Qué acumulo? Acumulo el dinero generado por cada producto utilizando valorVenta(venta).
+- ¿Cómo agrupo? Agrupo las ventas por producto utilizando reduce() y un objeto acumulador. Después ordeno los productos de mayor a menor valor con sort().
+4. comparar(nombre, resultadoCiclo, resultadoMetodo)
+- ¿Qué recorro? No recorro arreglos; recibo dos resultados como parámetros.
+- ¿Qué filtro? No filtro registros.
+- ¿Qué transformo? No transformo datos.
+- ¿Qué acumulo? No acumulo valores.
+- ¿Cómo agrupo? No agrupo información. Comparo los resultados obtenidos mediante ciclos y métodos de arreglos para verificar si son iguales.
+5. totalVendido(ventas) y totalVendidoM(ventas)
+- ¿Qué recorro? Recorro todas las ventas.
+- ¿Qué filtro? No filtro registros.
+- ¿Qué transformo? Calculo el valor de cada venta multiplicando cantidad por precio.
+- ¿Qué acumulo? Sumo el valor de todas las ventas para obtener el total vendido.
+- ¿Cómo agrupo? No agrupo, obtengo un único total general.
+6. unidadesVendidas(ventas) y unidadesVendidasM(ventas)
+- ¿Qué recorro? Recorro todos los registros de ventas.
+- ¿Qué filtro? No filtro registros.
+- ¿Qué transformo? Obtengo la cantidad de unidades de cada venta.
+- ¿Qué acumulo? Sumo todas las unidades vendidas.
+- ¿Cómo agrupo? No agrupo, obtengo una cantidad total de unidades.
+7. ventasPorCiudad(ventas) y ventasPorciudadM(ventas)
+- ¿Qué recorro? Recorro las ventas registradas.
+- ¿Qué filtro? Selecciono únicamente las ventas cuya ciudad coincide con la ciudad indicada, en este caso Medellín.
+- ¿Qué transformo? Obtengo o proceso los registros que cumplen la condición.
+- ¿Qué acumulo? Depende de la implementación, pero en esta función se busca obtener el resultado de las ventas correspondientes a la ciudad.
+- ¿Cómo agrupo? No necesariamente agrupo; selecciono las ventas por ciudad.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 ## DECISIONES:
  Arreglo vacío en `ventaMayor` | Devuelve `null`, porque no hay ninguna venta que sea la mayor
