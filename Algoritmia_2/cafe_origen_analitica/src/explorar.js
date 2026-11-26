@@ -84,3 +84,13 @@ console.log([].length);  // 0 -> dividir entre 0
 console.log(ventas.reduce((s, v) => s + v.cantidad * v.precio, 0)); // con valor inicial 0
 console.log("Bueno (corregido):", promedio);
 */ 
+
+
+
+console.time("Total cadena");
+totalCiudadCadena(ventasComparacion, ciudad);
+console.timeEnd("Total cadena");
+
+console.time("Total una pasada");
+totalCiudadUnaPasada(ventasComparacion, ciudad);
+console.timeEnd("Total una pasada");

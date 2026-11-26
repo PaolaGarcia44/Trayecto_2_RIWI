@@ -68,3 +68,4 @@ El sistema permite responder las siguientes preguntas:
 Aplicar los fundamentos de JavaScript mediante el procesamiento de datos, la creación de funciones, el uso de ciclos, métodos de arreglos, acumuladores, filtros y agrupaciones.
 
 También se busca desarrollar habilidades para validar resultados, identificar errores y documentar soluciones durante el proceso de desarrollo.
+
