@@ -477,3 +477,13 @@ Con esto comprobé que las nuevas versiones funcionan correctamente y mantienen 
 
 
 
+## Complejidad de  fuerza bruta
+
+Al colocar 70.000 arroja un valor NULL, pero al colocar 68.000 si me saca los datos 
+  { producto: 'Origen Huila 500 g', precio: 42000 },
+  { producto: 'Origen Nariño 250 g', precio: 26000 }
+
+  que se ajusta mejor al regalo de venta lo que pasa es que 70.000 sobrepasa al valor limite de regalo por eso 68.000 da mas opciones y arroja un valor.
+
+  comboRegalo(catalogo, 68000); // Devuelve los productos que suman el valor limite
+  comboRegalo(catalogo, 70000); // Devuelve null por que no encuentra varias cosas que se ajuste al presupuesto.

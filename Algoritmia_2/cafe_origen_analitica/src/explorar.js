@@ -1,9 +1,10 @@
 const ventas = require("./datos.js");
 const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
-  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada,clientesRecurrentesSet,comprasPorCliente,clientesRecurrentesMap} = require("./analitica.js");
+  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada,clientesRecurrentesSet,comprasPorCliente,clientesRecurrentesMap,comboRegalo,comboRegaloMap} = require("./analitica.js");
 const { generarVentas } = require("./generador.js");
+const catalogo = require("./catalogo.js");
 
-//PRIMER TUESTE 
+
 /* console.log("registros:", ventas.length);
 console.log("primero:", ventas[0]);
 console.log("ultimo:", ventas[ventas.length - 1]);
@@ -86,7 +87,7 @@ console.log("Clientes recurrentes con Map:", clientesRecurrentesMap(ventas));
 
 
 
-// Función para comparar las tres versiones
+/* // Función para comparar las tres versiones
 function compararVersiones(ventasPrueba, nombre) {
 
   const original = clientesRecurrentes(ventasPrueba).slice().sort();
@@ -117,8 +118,28 @@ compararVersiones(ventas, "Datos del Día 1");
 const ventasGeneradas = generarVentas(5000);
 
 compararVersiones(ventasGeneradas, "5.000 ventas generadas");
+ */
 
-/* 
+// funcion comboregalo
+console.log(catalogo);
+console.log(comboRegalo(catalogo, 68000));
+
+//funcion comboregalomap
+console.log(comboRegaloMap(catalogo, 68000));
+
+/* comboRegalo,comboRegalomap}
+
+
+
+
+
+
+
+
+
+
+
+
 
 console.log("Un elemento:", a.totalVendido([ventas[0]]));
 console.log("Vacío:", a.totalVendido([]), a.ventaMayor([]), a.ticketPromedio([]));

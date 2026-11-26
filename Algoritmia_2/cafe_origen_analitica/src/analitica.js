@@ -260,7 +260,33 @@ function clientesRecurrentesMap(ventas) {
 
   return recurrentes;
 }
+// comboRegalo(catalogo, valor)
 
+function comboRegalo(catalogo, valor) {
+
+    for (let i = 0; i < catalogo.length; i++) {
+        for (let j = i + 1; j < catalogo.length; j++) {
+            const suma = catalogo[i].precio + catalogo[j].precio;
+            if (suma === valor) {
+                return [catalogo[i], catalogo[j]];
+            }
+        }
+    }
+    return null;
+}
+
+// comboRegalomap
+
+function comboRegaloMap(catalogo, valor){
+const preciosVistos = new Map();
+for (const producto of catalogo) {
+const complemento = valor - producto.precio;
+if (preciosVistos.has(complemento)) {
+    return [preciosVistos.get(complemento), producto];
+preciosVistos.set(producto.precio, producto);
+}
+return null;
+}
 
 module.exports = {
   valorVenta,
@@ -282,9 +308,8 @@ module.exports = {
   clientesRecurrentesSet,
   comprasPorCliente,
   clientesRecurrentesMap,
-  
+  comboRegalo,
+  comboRegaloMap,
 };
 
-
-
-
+}
