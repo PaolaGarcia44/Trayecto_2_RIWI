@@ -133,3 +133,35 @@ Por ejemplo:
 Así podría contar las compras sin comparar cada venta con todas las demás.
 
 La mejora podría reducir la complejidad temporal de O(n²) a O(n). Por ahora es solo una propuesta, todavía no modificaré la función.
+
+
+## Comparación de tiempos de clientes recurrentes
+
+Realicé pruebas con 1.000, 10.000 y 100.000 ventas para comparar las tres versiones de la función.
+
+| Cantidad de ventas | Versión original | Versión Set | Versión Map |
+|---:|---:|---:|---:|
+| 1.000 | 11.42 ms | 1.179 ms | 2.552 ms |
+| 10.000 | 566.213 ms | 2.32 ms | 3.579 ms |
+| 100.000 | No ejecutada | 45.586 ms | 66.55 ms |
+
+La versión original solamente se ejecutó hasta 10.000 ventas porque necesita realizar muchas comparaciones y su tiempo aumenta considerablemente.
+
+En las pruebas, la versión Set fue la más rápida, seguida de la versión Map. Ambas permitieron procesar 100.000 ventas en menos de un segundo.
+
+Estos resultados muestran que utilizar Set y Map mejora el rendimiento del reporte de clientes recurrentes. Los tiempos pueden variar dependiendo del computador y de las condiciones de ejecución.
+
+
+## Intercambio entre tiempo y memoria
+
+Con las nuevas funciones `clientesRecurrentesSet` y `clientesRecurrentesMap` entendí que podemos utilizar más memoria para reducir el tiempo que tarda un proceso.
+
+Antes, la función original comparaba los clientes entre sí, lo que generaba muchas operaciones.
+
+Ahora, con Set y Map, guardamos información de los clientes para no tener que buscarlos repetidamente.
+
+Esto significa que necesitamos memoria adicional O(n), porque guardamos los clientes y sus datos. A cambio, conseguimos una búsqueda mucho más rápida y una complejidad temporal O(n) en promedio.
+
+En mis pruebas con 100.000 ventas, Set tardó 45.586 ms y Map tardó 66.55 ms. Ambas versiones cumplieron el requisito de responder en menos de un segundo.
+
+En conclusión, considero que vale la pena utilizar un poco más de memoria para conseguir que el reporte responda mucho más rápido.

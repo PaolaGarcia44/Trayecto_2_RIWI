@@ -1,6 +1,6 @@
 const ventas = require("./datos.js");
 const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
-  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada} = require("./analitica.js");
+  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada,clientesRecurrentesSet,comprasPorCliente,clientesRecurrentesMap} = require("./analitica.js");
 const { generarVentas } = require("./generador.js");
 
 //PRIMER TUESTE 
@@ -39,7 +39,7 @@ console.log("Venta mayor I:", ventaMayorI(ventas, contadorMayor));
 console.log("Contador venta mayor:", contadorMayor);
 
 console.log("Total por ciudad I:", totalPorCiudadI(ventas, contadorCiudad));
-console.log("Contador total por ciudad:", contadorCiudad); */
+console.log("Contador total por ciudad:", contadorCiudad); 
 
 //dia dos 
 
@@ -68,6 +68,56 @@ console.log("Resultado una pasada:", resultadoUnaPasada);
 // Comprobar si son iguales
 console.log("¿Son iguales?:", resultadoCadena === resultadoUnaPasada);
 
+
+console.time("Total cadena");
+totalCiudadCadena(ventasComparacion, ciudad);
+console.timeEnd("Total cadena");
+
+console.time("Total una pasada");
+totalCiudadUnaPasada(ventasComparacion, ciudad);
+console.timeEnd("Total una pasada"); 
+
+// Versión con Set para clientes recurrentes
+console.log("Clientes recurrentes con Set:", clientesRecurrentesSet(ventas));
+
+console.log("Compras por cliente:", comprasPorCliente(ventas));
+console.log("Clientes recurrentes con Map:", clientesRecurrentesMap(ventas));
+*/
+
+
+
+// Función para comparar las tres versiones
+function compararVersiones(ventasPrueba, nombre) {
+
+  const original = clientesRecurrentes(ventasPrueba).slice().sort();
+
+  const versionSet = clientesRecurrentesSet(ventasPrueba).slice().sort();
+
+  const versionMap = clientesRecurrentesMap(ventasPrueba).slice().sort();
+
+  console.log("\nPrueba:", nombre);
+
+  console.log("Versión original:", original);
+  console.log("Versión Set:", versionSet);
+  console.log("Versión Map:", versionMap);
+
+  const sonIguales =
+    JSON.stringify(original) === JSON.stringify(versionSet) &&
+    JSON.stringify(original) === JSON.stringify(versionMap);
+
+  console.log("¿Las tres versiones son iguales?:", sonIguales);
+}
+
+
+// PRIMERA PRUEBA: datos del Día 1
+compararVersiones(ventas, "Datos del Día 1");
+
+
+// SEGUNDA PRUEBA: generar 5.000 ventas
+const ventasGeneradas = generarVentas(5000);
+
+compararVersiones(ventasGeneradas, "5.000 ventas generadas");
+
 /* 
 
 console.log("Un elemento:", a.totalVendido([ventas[0]]));
@@ -84,13 +134,3 @@ console.log([].length);  // 0 -> dividir entre 0
 console.log(ventas.reduce((s, v) => s + v.cantidad * v.precio, 0)); // con valor inicial 0
 console.log("Bueno (corregido):", promedio);
 */ 
-
-
-
-console.time("Total cadena");
-totalCiudadCadena(ventasComparacion, ciudad);
-console.timeEnd("Total cadena");
-
-console.time("Total una pasada");
-totalCiudadUnaPasada(ventasComparacion, ciudad);
-console.timeEnd("Total una pasada");

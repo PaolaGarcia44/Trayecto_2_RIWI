@@ -383,7 +383,6 @@ En el peor caso, `includes()` puede tener complejidad O(n). Sin embargo, la comp
 ## Conclusión para la gerente
 El reporte se vuelve lento porque, para saber qué clientes compraron más de una vez, el programa compara cada venta con todas las demás. Si las ventas se duplican, el trabajo se multiplica por cuatro.
 
-# DIA 3: SEMANA1 
 
 RESULTADO DE COMPARACIÓN:
 Cadena:     488361000
@@ -426,6 +425,55 @@ Por otro lado, la versión de una pasada utiliza un solo ciclo para revisar las 
 Aunque la versión con métodos también es fácil de entender porque divide el proceso en varios pasos, considero que la versión de una pasada ofrece un mejor equilibrio entre claridad y uso de recursos.
 
 Por esta razón, elegí conservar la versión de una pasada, ya que realiza el trabajo de manera sencilla y utiliza menos memoria adicional.
+
+# Dia 3 SEMANA1 
+
+## Resolución del reto: clientes recurrentes
+
+### 1. Entender el problema
+
+La función `clientesRecurrentes` recibe un arreglo de ventas y debe devolver los clientes que aparecen más de una vez.
+
+Por ejemplo, si los clientes son C01, C02, C01, C03 y C02, el resultado debe ser C01 y C02.
+
+La función no debe modificar las ventas originales ni repetir un cliente en el resultado.
+
+### 2. Casos especiales
+
+Probé diferentes situaciones que pueden presentarse:
+
+- Si no hay ventas, debe devolver un arreglo vacío.
+- Si hay un solo cliente, no debe aparecer como recurrente.
+- Si un cliente aparece dos o más veces, debe aparecer una sola vez en el resultado.
+- Si todos los clientes son diferentes, debe devolver un arreglo vacío.
+
+### 3. Solución actual: fuerza bruta
+
+La primera solución utiliza dos ciclos para comparar los clientes de unas ventas con otras. También utiliza `includes()` para revisar si un cliente ya fue guardado.
+
+El problema es que realiza muchas comparaciones cuando aumenta la cantidad de ventas.
+
+Su complejidad temporal es O(n²), porque el trabajo crece mucho cuando hay más registros.
+
+### 4. Idea para mejorarla
+
+Para mejorar la función propongo utilizar `Set`.
+
+La idea es guardar en un conjunto los clientes que ya encontré. Cuando vuelva a encontrar un cliente, lo guardaré en otro conjunto llamado recurrentes.
+
+De esta manera, no necesito comparar todas las ventas entre sí. Puedo revisar cada venta una sola vez.
+
+La búsqueda en `Set` tiene un costo promedio O(1), por lo que la función puede pasar de O(n²) a O(n) en tiempo, utilizando memoria adicional O(n).
+
+## **Verificación de las tres versiones**
+
+Realicé pruebas con los datos originales del Día 1 y con 5.000 ventas generadas.
+
+Comparé las tres funciones: `clientesRecurrentes`, `clientesRecurrentesSet` y `clientesRecurrentesMap`. Para evitar diferencias por el orden de los clientes, ordené los resultados antes de compararlos.
+
+En ambas pruebas obtuve `true`, lo que confirma que las tres funciones encuentran los mismos clientes recurrentes.
+
+Con esto comprobé que las nuevas versiones funcionan correctamente y mantienen el mismo resultado que la función original.
 
 
 
