@@ -355,8 +355,98 @@ function primerClienteUnico(ventas) {
   return null;
 }
 
+// Mejor semana por fuerza bruta
+function mejorSemanaBruta(dias, k) {
+  let mayorSuma = 0;
+
+  for (let i = 0; i <= dias.length - k; i++) {
+    let suma = 0;
+
+    for (let j = i; j < i + k; j++) {
+      suma = suma + dias[j];
+    }
+
+    if (suma > mayorSuma) {
+      mayorSuma = suma;
+    }
+  }
+
+  return mayorSuma;
+}
+
+// Mejor semana con ventana deslizante
+function mejorSemana(dias, k) {
+  if (k <= 0 || k > dias.length) return null;
+
+  let suma = 0;
+
+  for (let i = 0; i < k; i++) {
+    suma += dias[i];
+  }
+
+  let mayor = suma;
+  let inicio = 1;
+
+  for (let i = k; i < dias.length; i++) {
+    suma += dias[i] - dias[i - k];
+
+    if (suma > mayor) {
+      mayor = suma;
+      inicio = i - k + 2;
+    }
+  }
+
+  return { total: mayor, diaInicio: inicio };
+}
 
 
+
+// Función para comparar resultados de mejor semana
+function compararSemanas(dias, nombre) {
+  const k = 7;
+
+  console.log("\nPrueba:", nombre);
+
+  console.time("Fuerza bruta");
+  const resultadoBruta = mejorSemanaBruta(dias, k);
+  console.timeEnd("Fuerza bruta");
+
+  console.time("Ventana deslizante");
+  const resultadoVentana = mejorSemana(dias, k);
+  console.timeEnd("Ventana deslizante");
+
+  console.log("Resultado fuerza bruta:", resultadoBruta);
+  console.log("Resultado ventana:", resultadoVentana.total);
+
+  console.log(
+    "¿Los resultados coinciden?:",
+    resultadoBruta === resultadoVentana.total
+  );
+}
+
+// Función para encontrar el par de precios más cercano al presupuesto
+function parMasCercano(precios, presupuesto) {
+  let inicio = 0;
+  let fin = precios.length - 1;
+  let mejor = null;
+  let mayor = 0;
+
+  while (inicio < fin) {
+    let suma = precios[inicio].precio + precios[fin].precio;
+
+    if (suma <= presupuesto) {
+      if (suma > mayor) {
+        mayor = suma;
+        mejor = [precios[inicio], precios[fin]];
+      }
+      inicio++;
+    } else {
+      fin--;
+    }
+  }
+
+  return mejor;
+}
 module.exports = {
   valorVenta,
   totalVendido,
@@ -381,6 +471,10 @@ module.exports = {
   comboRegaloMap,
   productoEstrellaPorCiudad,
   primerClienteUnico,
+  mejorSemanaBruta,
+  mejorSemana,
+  compararSemanas,
+  parMasCercano,
 };
 
 

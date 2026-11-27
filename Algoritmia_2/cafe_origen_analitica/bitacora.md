@@ -515,3 +515,50 @@ En esta sección explico cuánto trabajo realiza cada función y cuánta memoria
 - **O(n) en espacio:** significa que necesitan memoria adicional para guardar información en un Map.
 
 Las tres funciones utilizan Maps para guardar información y evitar hacer búsquedas repetidas. Por eso pueden resolver sus tareas de manera más eficiente cuando aumenta la cantidad de datos.
+
+### Tres primeras posiciones de la ventana
+
+Utilicé cinco datos y una ventana de tres días (`k = 3`).
+
+- Primera posición: días 1, 2 y 3. La suma es 35.
+- Segunda posición: días 2, 3 y 4. La suma es 55.
+- Tercera posición: días 3, 4 y 5. La suma es 50.
+
+La mayor suma fue 55 y corresponde a la segunda posición, que comienza en el día 2.
+
+Con este ejemplo puedo observar cómo la ventana se desplaza un día a la vez, agregando un nuevo valor y quitando el anterior.
+
+### Comparación de fuerza bruta y ventana deslizante
+
+Realicé pruebas con los datos de septiembre y con 100.000 días generados aleatoriamente.
+
+En ambas pruebas las dos funciones devolvieron el mismo resultado, por lo que comprobé que realizan correctamente el cálculo.
+
+Con los datos de septiembre, la fuerza bruta tardó 0.016 ms y la ventana deslizante 0.048 ms. La diferencia fue pequeña porque se trabajó con pocos datos.
+
+Con 100.000 días, la fuerza bruta tardó 163.929 ms, mientras que la ventana deslizante tardó 16.42 ms. En esta prueba, la ventana deslizante fue aproximadamente 10 veces más rápida.
+
+Esto sucede porque la fuerza bruta vuelve a sumar los días de cada grupo, mientras que la ventana deslizante aprovecha la suma anterior y solamente agrega el nuevo día y resta el que sale.
+
+Con estas pruebas comprobé que la ventana deslizante es más conveniente cuando aumenta la cantidad de datos.
+
+### Pruebas y traza de parMasCercano
+
+Realicé tres pruebas con presupuestos de $100.000, $140.000 y $40.000.
+
+Con $100.000 encontré una combinación de $90.000. Con $140.000 encontré una combinación exacta de ese valor. Con $40.000 la función devolvió `null`, porque no encontró dos productos que pudieran completar ese presupuesto.
+
+Para la traza de $100.000 observé cómo funcionan los dos punteros: uno comienza en el producto más barato y el otro en el más caro. Cuando la suma supera el presupuesto, muevo el puntero derecho hacia la izquierda. Cuando la suma no supera el presupuesto, guardo la combinación y muevo el puntero izquierdo.
+
+Así puedo encontrar la mejor combinación sin comparar todos los productos entre sí.
+
+### Costo de ordenar los precios
+
+Para utilizar la función `parMasCercano`, primero necesito ordenar los productos de menor a mayor.
+
+Al utilizar `slice()`, creo una copia del catálogo, lo que necesita memoria adicional O(n). Después, con `sort()`, ordeno los productos, con un costo de tiempo O(n log n).
+
+La función `parMasCercano` realiza la búsqueda con dos punteros y tiene un costo O(n) en tiempo y O(1) en memoria adicional.
+
+Por lo tanto, si cuento todo el proceso, incluyendo la copia y el ordenamiento, la complejidad temporal es O(n log n) y la espacial es O(n).
+

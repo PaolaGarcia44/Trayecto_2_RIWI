@@ -1,7 +1,7 @@
 const ventas = require("./datos.js");
 const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
   ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada,clientesRecurrentesSet,comprasPorCliente,clientesRecurrentesMap,comboRegalo,comboRegaloMap
-,productoEstrellaPorCiudad,primerClienteUnico} = require("./analitica.js");
+,productoEstrellaPorCiudad,primerClienteUnico,mejorSemanaBruta,mejorSemana,compararSemanas,parMasCercano} = require("./analitica.js");
 const { generarVentas } = require("./generador.js");
 const catalogo = require("./catalogo.js");
 
@@ -143,19 +143,41 @@ console.log(comboRegaloMap(catalogo, 1));
 // Pruebas de producto estrella por ciudad
 console.log("Producto estrella por ciudad:");
 console.log(productoEstrellaPorCiudad(ventas));
- */
 
 
+// Pruebas de primer cliente único
 console.log("Primer cliente único:", primerClienteUnico(ventas));
+ 
+//mejor semana bruta
+const dias = [10, 20, 5, 30, 15];
+console.log("Mejor semana:", mejorSemanaBruta(dias, 3));
 
 
+// Pruebas de mejor semana
+const dias = [10, 20, 5, 30, 15];
+console.log("Mejor semana:", mejorSemana(dias, 3));
 
 
+// Pruebas de comparar semanas
+const diasSeptiembre = [10, 20, 5, 30, 15, 25, 40, 10, 5, 20, 30, 15, 25, 10, 5, 20, 30, 15, 25, 10, 5, 20, 30, 15, 25];
+compararSemanas(diasSeptiembre, "Datos de septiembre");
+*/
 
+// Pruebas de par más cercano
+const ordenados = catalogo.slice().sort(function(a, b) {
+  return a.precio - b.precio;
+});
 
+console.log(parMasCercano(ordenados, 87000));
 
+console.log("Presupuesto 100.000:");
+console.log(parMasCercano(ordenados, 100000));
 
+console.log("Presupuesto 140.000:");
+console.log(parMasCercano(ordenados, 140000));
 
+console.log("Presupuesto 40.000:");
+console.log(parMasCercano(ordenados, 40000));
 /*
 
 console.log("Un elemento:", a.totalVendido([ventas[0]]));
