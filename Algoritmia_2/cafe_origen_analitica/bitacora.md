@@ -487,3 +487,31 @@ Al colocar 70.000 arroja un valor NULL, pero al colocar 68.000 si me saca los da
 
   comboRegalo(catalogo, 68000); // Devuelve los productos que suman el valor limite
   comboRegalo(catalogo, 70000); // Devuelve null por que no encuentra varias cosas que se ajuste al presupuesto.
+
+  ### Pruebas y traza de comboRegaloMap
+
+Realicé tres pruebas con valores de $87.000, $61.000 y $1.
+
+En la prueba de $87.000, la función encontró dos productos: Origen Huila, de $42.000, y Origen Sierra, de $45.000. La suma de ambos corresponde al valor solicitado.
+
+En la prueba de $61.000 y en la de $1, la función devolvió `null`, porque no encontró dos productos que completaran esos valores.
+
+Durante la traza de $87.000 observé que la función guarda los precios que va encontrando en un Map. Cuando revisa el producto Origen Sierra, calcula que necesita un producto de $42.000. Como ese precio ya estaba guardado, encuentra la combinación y devuelve los dos productos.
+
+
+## Clasificación de complejidad de las funciones
+
+En esta sección explico cuánto trabajo realiza cada función y cuánta memoria adicional necesita.
+
+| Función | Complejidad temporal | Complejidad espacial | Justificación |
+|---|---|---|---|
+| `comboRegaloMap` | O(n) | O(n) | Recorre el catálogo una sola vez y utiliza un Map para guardar los precios que ya encontró. |
+| `productoEstrellaPorCiudad` | O(n) | O(n) | Recorre las ventas y guarda en Maps las ciudades, los productos y sus cantidades. Después busca el producto que más aparece en cada ciudad. |
+| `primerClienteUnico` | O(n) | O(n) | Realiza dos recorridos: primero cuenta las compras de cada cliente y después busca el primero que aparece una sola vez. Utiliza un Map para guardar los conteos. |
+
+### Explicación sencilla
+
+- **O(n) en tiempo:** significa que el trabajo aumenta cuando tenemos más registros. Aunque algunas funciones hacen dos recorridos, se mantiene O(n) porque se eliminan las constantes.
+- **O(n) en espacio:** significa que necesitan memoria adicional para guardar información en un Map.
+
+Las tres funciones utilizan Maps para guardar información y evitar hacer búsquedas repetidas. Por eso pueden resolver sus tareas de manera más eficiente cuando aumenta la cantidad de datos.

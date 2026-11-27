@@ -275,18 +275,87 @@ function comboRegalo(catalogo, valor) {
     return null;
 }
 
-// comboRegalomap
+// comboRegaloMap
 
-function comboRegaloMap(catalogo, valor){
-const preciosVistos = new Map();
-for (const producto of catalogo) {
-const complemento = valor - producto.precio;
-if (preciosVistos.has(complemento)) {
-    return [preciosVistos.get(complemento), producto];
-preciosVistos.set(producto.precio, producto);
+function comboRegaloMap(catalogo, valor) {
+  const preciosVistos = new Map();
+  for (const producto of catalogo) {
+    const complemento = valor - producto.precio;
+    if (preciosVistos.has(complemento)) {
+      return [preciosVistos.get(complemento), producto];
+    }
+    preciosVistos.set(producto.precio, producto);
+  }
+  return null;
 }
-return null;
+
+// productoEstrellaPorCiudad
+function productoEstrellaPorCiudad(ventas) {
+  const frecuencias = new Map();
+
+  for (const venta of ventas) {
+    const ciudad = venta.ciudad.trim().toLowerCase();
+    const producto = venta.producto;
+
+    if (!frecuencias.has(ciudad)) {
+      frecuencias.set(ciudad, new Map());
+    }
+
+    const productos = frecuencias.get(ciudad);
+
+    productos.set(producto, (productos.get(producto) || 0) + 1);
+  }
+
+  const resultado = [];
+
+  for (const [ciudad, productos] of frecuencias) {
+    let estrella = "";
+    let mayor = 0;
+
+    for (const [producto, cantidad] of productos) {
+      if (cantidad > mayor) {
+        mayor = cantidad;
+        estrella = producto;
+      }
+    }
+
+    resultado.push({
+      ciudad: ciudad,
+      producto: estrella,
+      apariciones: mayor
+    });
+  }
+
+  return resultado;
 }
+
+// Primer cliente único
+
+function primerClienteUnico(ventas) {
+  const clientes = new Map();
+
+  // Primer recorrido: contar los clientes
+  for (const venta of ventas) {
+    const cliente = venta.cliente;
+
+    if (clientes.has(cliente)) {
+      clientes.set(cliente, clientes.get(cliente) + 1);
+    } else {
+      clientes.set(cliente, 1);
+    }
+  }
+
+  // Segundo recorrido: buscar el primero que aparece una vez
+  for (const venta of ventas) {
+    if (clientes.get(venta.cliente) === 1) {
+      return venta.cliente;
+    }
+  }
+
+  return null;
+}
+
+
 
 module.exports = {
   valorVenta,
@@ -310,6 +379,9 @@ module.exports = {
   clientesRecurrentesMap,
   comboRegalo,
   comboRegaloMap,
+  productoEstrellaPorCiudad,
+  primerClienteUnico,
 };
 
-}
+
+

@@ -1,6 +1,7 @@
 const ventas = require("./datos.js");
 const { valorVenta,unidadesVendidas,ventaMayor,totalVendido,ticketPromedio,ventasPorCiudad,totalVendidoM,unidadesVendidasM,ventasPorciudadM,totalVendidoI,
-  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada,clientesRecurrentesSet,comprasPorCliente,clientesRecurrentesMap,comboRegalo,comboRegaloMap} = require("./analitica.js");
+  ventaMayorI,totalPorCiudadI,clientesRecurrentes,totalCiudadCadena,totalCiudadUnaPasada,clientesRecurrentesSet,comprasPorCliente,clientesRecurrentesMap,comboRegalo,comboRegaloMap
+,productoEstrellaPorCiudad,primerClienteUnico} = require("./analitica.js");
 const { generarVentas } = require("./generador.js");
 const catalogo = require("./catalogo.js");
 
@@ -119,7 +120,7 @@ const ventasGeneradas = generarVentas(5000);
 
 compararVersiones(ventasGeneradas, "5.000 ventas generadas");
  */
-
+/*
 // funcion comboregalo
 console.log(catalogo);
 console.log(comboRegalo(catalogo, 68000));
@@ -127,7 +128,25 @@ console.log(comboRegalo(catalogo, 68000));
 //funcion comboregalomap
 console.log(comboRegaloMap(catalogo, 68000));
 
-/* comboRegalo,comboRegalomap}
+// Pruebas de comboRegaloMap
+
+console.log("Combinación de 87.000:");
+console.log(comboRegaloMap(catalogo, 87000));
+
+console.log("Combinación de 61.000:");
+console.log(comboRegaloMap(catalogo, 61000));
+
+console.log("Prueba sin combinación:");
+console.log(comboRegaloMap(catalogo, 1));
+
+
+// Pruebas de producto estrella por ciudad
+console.log("Producto estrella por ciudad:");
+console.log(productoEstrellaPorCiudad(ventas));
+ */
+
+
+console.log("Primer cliente único:", primerClienteUnico(ventas));
 
 
 
@@ -137,9 +156,7 @@ console.log(comboRegaloMap(catalogo, 68000));
 
 
 
-
-
-
+/*
 
 console.log("Un elemento:", a.totalVendido([ventas[0]]));
 console.log("Vacío:", a.totalVendido([]), a.ventaMayor([]), a.ticketPromedio([]));
