@@ -562,3 +562,60 @@ La función `parMasCercano` realiza la búsqueda con dos punteros y tiene un cos
 
 Por lo tanto, si cuento todo el proceso, incluyendo la copia y el ordenamiento, la complejidad temporal es O(n log n) y la espacial es O(n).
 
+# Bitácora – Café Origen Analítica
+
+## Resumen de la semana
+
+Durante esta semana construí un motor de análisis para una tienda de café. Trabajé con ventas, clientes, productos y ciudades utilizando JavaScript.
+
+### MiniReto 1. Análisis de ventas
+
+Construí funciones para calcular el total vendido, las unidades, el promedio, la venta mayor y las ventas por ciudad.
+
+Aprendí a recorrer arreglos y trabajar con objetos.
+
+### MiniReto 2. Optimización de clientes
+
+Primero utilicé ciclos para encontrar clientes repetidos. Después mejoré la búsqueda con Set y Map.
+
+Comprobé que las tres versiones devolvieran los mismos clientes y comparé sus tiempos.
+
+### MiniReto 3. Búsquedas con Map
+
+Construí funciones para encontrar combos de regalo, contar compras por cliente, identificar productos frecuentes por ciudad y encontrar el primer cliente que aparece una sola vez.
+
+Aprendí a guardar información para evitar buscarla varias veces.
+
+### MiniReto 4. Ventana deslizante
+
+Construí dos funciones para encontrar la mejor semana de ventas: una por fuerza bruta y otra con ventana deslizante.
+
+Probé ambas con datos de septiembre y con 100.000 días. Comprobé que devolvían el mismo resultado, pero la ventana deslizante fue más rápida con muchos datos.
+
+### MiniReto 5. Dos punteros
+
+Construí `parMasCercano` para encontrar dos productos cuya suma se acerque al presupuesto sin superarlo.
+
+Aprendí que primero debo ordenar los precios y después utilizar dos punteros para buscar la combinación.
+
+### Integración del reporte
+
+Actualicé `reporte.js` para mostrar las nuevas secciones y permitir trabajar con las ventas originales o con datos generados.
+
+## Estrategia que utilicé
+
+Para resolver los retos seguí estos pasos:
+
+1. Entender qué información recibe la función y qué resultado debe entregar.
+2. Probar primero con ejemplos pequeños.
+3. Identificar qué trabajo se estaba repitiendo.
+4. Buscar una forma de mejorar el código utilizando Map, Set, ventana deslizante o dos punteros.
+5. Comparar los resultados y medir los tiempos.
+
+## Lo que aprendí
+
+Durante estos ejercicios aprendí que un código puede dar el resultado correcto, pero también es importante revisar cuánto tiempo tarda y cuánta memoria utiliza.
+
+Al principio algunas funciones me parecían complicadas, pero al dividirlas en pasos pequeños pude entender mejor cómo funcionan.
+
+Me llevo como aprendizaje que no siempre necesitamos hacer más trabajo para obtener un buen resultado. A veces, guardar información o reutilizar cálculos permite que el programa funcione mucho mejor.

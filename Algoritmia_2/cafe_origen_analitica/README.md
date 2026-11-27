@@ -69,3 +69,76 @@ Aplicar los fundamentos de JavaScript mediante el procesamiento de datos, la cre
 
 También se busca desarrollar habilidades para validar resultados, identificar errores y documentar soluciones durante el proceso de desarrollo.
 
+# Café Origen Analítica
+
+## ¿Qué es?
+
+Es un proyecto desarrollado en JavaScript para analizar las ventas de una tienda de café.
+
+Permite conocer cuánto se vendió, qué productos se venden más, cuáles clientes compran varias veces y qué combinación de productos se puede ofrecer como regalo.
+
+## ¿Cómo ejecutar?
+
+Desde la terminal, en la carpeta principal del proyecto:
+
+**Usar los datos originales:**
+
+```bash
+node src/reporte.js
+```
+
+**Generar 100.000 ventas:**
+
+```bash
+node src/reporte.js 100000
+```
+
+## ¿Qué preguntas responde?
+
+- ¿Cuánto dinero se vendió?
+- ¿Cuáles son los productos más vendidos?
+- ¿Qué ciudad tiene más ventas?
+- ¿Qué clientes compraron varias veces?
+- ¿Cuál es el producto más frecuente por ciudad?
+- ¿Qué productos pueden formar un combo de regalo?
+- ¿Qué cliente puede recibir un cupón?
+- ¿Cuál fue la mejor semana de ventas?
+
+## Estructura del proyecto
+
+```text
+cafe_origen_analitica/
+│
+├── README.md
+├── RENDIMIENTO.md
+├── BITACORA.md
+│
+└── src/
+    ├── datos.js
+    ├── generador.js
+    ├── analitica.js
+    ├── verificar.js
+    └── reporte.js
+```
+
+**¿Qué contiene cada archivo?**
+
+- `datos.js`: ventas originales.
+- `generador.js`: crea ventas de prueba.
+- `analitica.js`: contiene las funciones de análisis.
+- `verificar.js`: agrupa y organiza información de los productos y ciudades.
+- `reporte.js`: muestra los resultados en la terminal.
+
+## Tecnologías
+
+- JavaScript
+- Node.js
+- Map y Set
+- Arreglos y ciclos
+- Algoritmos de búsqueda y ordenamiento
+
+## Documentación adicional
+
+- `RENDIMIENTO.md`: explica la complejidad y las pruebas de rendimiento.
+- `BITACORA.md`: registra los retos realizados y lo aprendido durante el desarrollo.
+

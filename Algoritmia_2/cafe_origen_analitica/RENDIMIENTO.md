@@ -165,3 +165,48 @@ Esto significa que necesitamos memoria adicional O(n), porque guardamos los clie
 En mis pruebas con 100.000 ventas, Set tardó 45.586 ms y Map tardó 66.55 ms. Ambas versiones cumplieron el requisito de responder en menos de un segundo.
 
 En conclusión, considero que vale la pena utilizar un poco más de memoria para conseguir que el reporte responda mucho más rápido.
+
+## Comparación del tiempo total de los reportes
+
+El objetivo de esta prueba es comparar cuánto tarda el reporte original (v0.1) y el reporte optimizado (v1.0) al trabajar con 10.000 y 100.000 ventas.
+
+| Versión del reporte | 10.000 ventas | 100.000 ventas |
+|---|---:|---:|
+| Reporte v0.1 (original) | Pendiente de medir | Pendiente de medir |
+| Reporte v1.0 (optimizado) | Pendiente de medir | Pendiente de medir |
+
+Los tiempos se medirán en milisegundos utilizando PowerShell y `Measure-Command`.
+
+Con esta comparación quiero comprobar si las mejoras realizadas en el motor permiten generar los reportes en menos tiempo cuando aumenta la cantidad de ventas.
+
+El objetivo es que el reporte pueda responder en menos de un segundo cuando procesa 100.000 ventas.
+
+## Funciones nuevas y su complejidad
+
+| Función | Tiempo | Memoria | Explicación sencilla |
+|---|---|---|---|
+| `clientesRecurrentesSet` | O(n) | O(n) | Guarda los clientes vistos y detecta los repetidos con Set. |
+| `comprasPorCliente` | O(n) | O(n) | Cuenta las compras de cada cliente usando Map. |
+| `clientesRecurrentesMap` | O(n) | O(n) | Busca los clientes que tienen más de una compra. |
+| `comboRegalo` | O(n²) | O(1) | Compara los productos de dos en dos. |
+| `comboRegaloMap` | O(n) | O(n) | Guarda los precios encontrados para buscar su complemento. |
+| `productoEstrellaPorCiudad` | O(n) | O(n) | Cuenta los productos de cada ciudad y encuentra el más frecuente. |
+| `primerClienteUnico` | O(n) | O(n) | Cuenta las compras y busca el primer cliente que aparece una sola vez. |
+| `mejorSemanaBruta` | O(n × k) | O(1) | Suma cada grupo de días desde cero. |
+| `mejorSemana` | O(n) | O(1) | Aprovecha la suma anterior y agrega o resta un día. |
+| `parMasCercano` | O(n) | O(1) | Utiliza dos punteros para encontrar la mejor combinación. |
+| Ordenar catálogo con `slice()` y `sort()` | O(n log n) | O(n) | Copia y organiza los productos de menor a mayor. |
+| `compararSemanas` | O(n × k) | O(1) | Ejecuta las dos versiones para comparar sus resultados y tiempos. |
+
+**Resultados de las pruebas**
+
+| Prueba | Versión original | Versión optimizada |
+|---|---:|---:|
+| Clientes recurrentes, 1.000 ventas | 11.42 ms | Set: 1.179 ms |
+| Clientes recurrentes, 10.000 ventas | 566.213 ms | Set: 2.32 ms |
+| Clientes recurrentes, 100.000 ventas | No ejecutada | Set: 45.586 ms |
+| Ventana semanal, 100.000 días | 163.929 ms | 16.42 ms |
+
+En las pruebas observé que las versiones optimizadas necesitan memoria adicional para guardar información, pero realizan menos trabajo y tardan menos tiempo.
+
+*Nota: `clientesRecurrentes` original utiliza dos ciclos y `includes()`. Esta búsqueda adicional puede elevar su costo en el peor caso hasta O(n³). Los tiempos del reporte completo v0.1 y v1.0 quedan pendientes de medición.*
